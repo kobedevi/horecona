@@ -610,6 +610,7 @@ form div label span {
   color: #7C5AF3;
 }
 form div input {
+  color: white;
   background: none;
   border: none;
   border-bottom: 1px solid #707070;

@@ -73,6 +73,7 @@ form {
         }
 
         input {
+            color: vars.$mainText;
             background: none;
             border: none;
             border-bottom: 1px solid vars.$input-border;
