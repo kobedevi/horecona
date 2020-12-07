@@ -1,0 +1,35 @@
+@use "../abstracts/variables" as vars;
+@use "../abstracts/functions" as func;
+
+body {
+    font-family: "Futura book", "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+header{
+    h1, h2{
+        filter: drop-shadow( 0 3px 6px rgba(0, 0, 0, .16));
+    }
+}
+
+h1, h2, p{
+    text-align: center;
+    font-size: func.rem(42px);
+    letter-spacing: func.xdLetterSpacing(10);
+    line-height: 54px;
+    color: vars.$mainText;
+    font-family: FuturaBook;
+}
+
+h2, p{
+    font-size: func.rem(16px);
+    line-height: 21px;
+}
+
+header {
+    .header__h2{
+        display: block;
+        margin-top:8px;
+        font-family: FuturaLight;
+    }
+}
+    

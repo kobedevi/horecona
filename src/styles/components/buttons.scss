@@ -1,0 +1,17 @@
+@use "../abstracts/variables" as vars;
+@use "../abstracts/mixins" as mix;
+
+.small_gradient_button{
+    background-image: url(../img/small-button.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 25px;
+    color: vars.$mainText;
+    text-decoration: none;
+    border-radius: 500px;
+    padding: 15px 45px;
+    filter: drop-shadow( 0 7px 6px rgba(0, 0, 0, .27));
+    justify-self: flex-end;
+    position: absolute;
+    bottom: 80px;
+}

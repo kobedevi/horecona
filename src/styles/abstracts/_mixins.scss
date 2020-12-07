@@ -1,0 +1,94 @@
+@use "./variables" as vars;
+
+// square
+// ---
+// Return the width and height of the square
+// ------------------------------------------------------------------------- /
+@mixin square($size) {
+	width: vars.$size;
+	height: vars.$size;
+}
+
+// at
+// ---
+// screen and min-width breakpoint
+// ------------------------------------------------------------------ /
+@mixin at($_min-width) {
+	@media screen and (min-width: $_min-width) {
+		@content;
+	}
+}
+
+// to
+// ---
+// screen and max-width breakpoint
+// ------------------------------------------------------------------ /
+
+$layer0: 0;
+$layer1: 1;
+
+@mixin to($_max-width) {
+	@media screen and (max-width: $_max-width) {
+		@content;
+	}
+}
+
+/*sets to border-box*/
+@mixin border-box() {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+// sets shadow over img (use on after)
+@mixin imgShadow() {
+	content: "";
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+	background: linear-gradient(to top, rgba(33, 32, 30, 0.95), rgba(33, 32, 30, 0.6), rgba(33, 32, 30, 0), rgba(33, 32, 30, 0.5));
+	opacity: 0.7;
+	transition: 0.2s;
+	z-index: $layer0;
+}
+
+// creates triangle (on after) ex. under header
+@mixin triangle($color) {
+	content: "";
+	display: block;
+	position: absolute;
+	bottom: -40px;
+	left: calc(50% - 20px);
+	@include border-box;
+	border: 20px solid transparent;
+	border-top-color: $color;
+}
+
+// sets icon with before
+@mixin icon($url, $size) {
+	content: "";
+	background: url("#{$url}");
+	display: block;
+	height: #{$size}px;
+	width: #{$size}px;
+	background-repeat: no-repeat;
+}
+
+// sets plaintext (lato) with given size and weight
+@mixin plaintext($size, $weight) {
+	font-family: vars.$plaintext, "arial", sans-serif;
+	font-weight: $weight;
+	font-size: $size;
+}
+
+// sets bigtext (oswald) with given size and weight and possible uppercase
+@mixin bigtext($size, $weight, $cap) {
+	font-family: vars.$bigtext, "arial", sans-serif;
+	font-weight: $weight;
+	font-size: $size;
+	@if $cap == "y" {
+		text-transform: uppercase;
+	}
+}

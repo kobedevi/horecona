@@ -1,0 +1,68 @@
+@use "../abstracts/variables" as vars;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+
+// .header__big{
+// 	width: 500px;
+// 	// clip-path: polygon(0% 0%, 100% 0, 100% 83%, 0% 100%, round 25px);
+// 	clip-path: inset(0% 0%, 100% 0, 100% 83%, 0% 100%, round 25%);
+// 	padding: 10px;
+// 	background-color: blue;
+// }
+
+
+// $l: 20em;
+
+// header {
+// 	display: flex;
+// 	height: 143px;
+// 	background: red;
+// 	clip-path: url(#svgPath);
+// }
+
+
+header{
+	display: flex;
+	position: relative;
+	div{
+		padding: 15px;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		flex-wrap: wrap;
+		color: vars.$mainText;
+		*{
+			margin: 0;
+		}
+	}
+	img{
+		align-self: flex-end;
+		position: absolute;
+	}
+	svg {
+		width: 100%;
+		filter: drop-shadow( 0 7px 6px rgba(0, 0, 0, .27));
+	}
+}
+
+.header__big{
+	div{
+		padding: 0;
+		margin-left: 15px;
+		width: calc(100% - 30px);
+		overflow: hidden;
+		display: flex;
+		img{
+			position: absolute;
+			transform: translate(-50% -50%);
+			left: -15%;
+			display: block;
+			width: 140%;
+			margin-bottom: 40px;
+		}
+	}
+}

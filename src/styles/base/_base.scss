@@ -1,0 +1,38 @@
+@use "../abstracts/variables" as vars;
+
+
+*{
+    box-sizing: border-box;
+}
+
+html{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: vars.$not-black;
+}
+
+body{
+    box-shadow: 0 0 0 10pt vars.$shadow;
+    border-radius: 25px;
+    padding: 10px 10px 0;
+    display: flex;
+    flex-direction: column;
+    width: 375px;
+    height: 812px;
+    background-image: url(../img/background.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+main{
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex-grow: 1;
+}

@@ -1,0 +1,43 @@
+@use "sass:math";
+// rem(px)
+// ---
+// Converts a pixel value to rem-units
+// ------------------------------------------------------------------------- /
+@function rem($px) {
+	$rem: $px / 16px;
+	@return #{$rem}rem;
+}
+
+@function mathFloor($value) {
+	$output: math.floor($value);
+	@return #{$output};
+}
+
+// credit: https://gist.github.com/wiseoldman/b7660e1acb39229f1d06db484506eeb4
+// converts adobe xd letter spacing to web spacing
+@function xdLetterSpacing($spacing){
+	@return (($spacing / 1000) *5) * 1em;
+}
+
+@function toNOrNotToN($value) {
+	$isRound: $value % 1;
+	$temp: $value;
+	@if($isRound > 0) {
+		$temp: #{mathFloor($value)};
+	} @else {
+		$temp: #{$value}n;
+	}
+	@return $temp;
+}
+
+// layer(name)
+// ---
+// Gets the z-index layer from the layers-map
+// ------------------------------------------------------------------------- /
+@function layer($layer) {
+	@if not map-has-key($layers, $layer) {
+		@warn "The layer `#{$layer}` was not found in the layers-map.";
+	}
+
+	@return map-get($layers, $layer);
+}

@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+// Themes (heb ik ni)
+
+// Vendors
+@use "./vendors/normalize.scss";
+
+// Base
+@use "./base/_base";
+@use "./base/fonts";
+@use "./base/helpers";
+@use "./base/typography";
+
+// Layout
+@use "./layout/grid";
+@use "./layout/header";
+@use "./layout/footer";
+
+// components
+
+// pages
+@use "./pages/home.scss";
