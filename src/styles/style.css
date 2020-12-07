@@ -373,6 +373,10 @@ main {
   flex-grow: 1;
 }
 
+form {
+  width: calc(100% - 32px);
+}
+
 @font-face {
   font-family: FuturaBook;
   src: url("../fonts/FuturaPTBook.ttf");
@@ -434,6 +438,15 @@ header .header__h2 {
   width: 32.5%;
 }
 .col-4:nth-child(3n) {
+  margin-right: 0;
+}
+
+.col-6 {
+  margin-right: 5%;
+  margin-bottom: 5%;
+  width: 47.5%;
+}
+.col-6:nth-child(2n) {
   margin-right: 0;
 }
 
@@ -501,9 +514,12 @@ header svg {
 }
 
 .small_gradient_button {
+  cursor: pointer;
+  border: none;
   background-image: url(../img/small-button.svg);
-  background-size: cover;
   background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   border-radius: 25px;
   color: white;
   text-decoration: none;
@@ -513,6 +529,133 @@ header svg {
   justify-self: flex-end;
   position: absolute;
   bottom: 80px;
+}
+.small_gradient_button.outline {
+  background: none;
+  border: 1px solid #7C5AF3;
+}
+.small_gradient_button.google {
+  background: white;
+  color: #2C384A;
+}
+
+form .small_gradient_button {
+  position: relative;
+  bottom: unset;
+  flex-grow: 1;
+}
+
+form {
+  margin-top: 48px;
+}
+form .container {
+  color: white;
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+form .container:hover input ~ .checkmark {
+  background-color: #2C384A;
+}
+form .container input:checked ~ .checkmark:after {
+  display: block;
+}
+form .container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+form .container .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 26px;
+  width: 26px;
+  border: 2px solid #7C5AF3;
+  border-radius: 50%;
+}
+form .container .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  top: 4px;
+  left: 4px;
+  width: 65%;
+  height: 65%;
+  border-radius: 50%;
+  background: #7C5AF3;
+}
+form div {
+  display: flex;
+  flex-flow: column-reverse;
+  margin-bottom: 1em;
+}
+form div label,
+form div input {
+  transition: all 0.2s;
+  touch-action: manipulation;
+}
+form div label {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: white;
+}
+form div label span {
+  color: #7C5AF3;
+}
+form div input {
+  background: none;
+  border: none;
+  border-bottom: 1px solid #707070;
+  font-family: inherit;
+  -webkit-appearance: none;
+  border-radius: 0;
+  padding: 0;
+  cursor: text;
+}
+form div input:focus {
+  outline: 0;
+  border-bottom: 1px solid #7C5AF3;
+}
+form div input:placeholder-shown + label {
+  cursor: text;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform-origin: left bottom;
+  transform: translate(0, 1rem) scale(1);
+}
+form div ::-webkit-input-placeholder {
+  opacity: 0;
+  transition: inherit;
+}
+form div ::-moz-placeholder {
+  opacity: 0;
+  transition: inherit;
+}
+form div input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+form div input:focus::-moz-placeholder {
+  opacity: 1;
+}
+form div input:not(:placeholder-shown) + label,
+form div input:focus + label {
+  transform: translate(0, -0.2rem) scale(1);
+  cursor: pointer;
+}
+
+.apart {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 /*# sourceMappingURL=style.css.map */

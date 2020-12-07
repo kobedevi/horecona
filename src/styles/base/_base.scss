@@ -36,3 +36,7 @@ main{
     justify-content: flex-start;
     flex-grow: 1;
 }
+
+form{
+    width: calc(100% - 32px);
+}

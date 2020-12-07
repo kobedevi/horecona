@@ -1,10 +1,13 @@
 @use "../abstracts/variables" as vars;
 @use "../abstracts/mixins" as mix;
 
-.small_gradient_button{
+.small_gradient_button {
+    cursor: pointer;
+    border: none;
     background-image: url(../img/small-button.svg);
-    background-size: cover;
     background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     border-radius: 25px;
     color: vars.$mainText;
     text-decoration: none;
@@ -14,4 +17,18 @@
     justify-self: flex-end;
     position: absolute;
     bottom: 80px;
+    &.outline{
+        background: none;
+        border: 1px solid vars.$main-solid-color;
+    }
+    &.google{
+        background: vars.$mainText;
+        color: vars.$not-black;
+    }
+}
+
+form .small_gradient_button{
+    position: relative;
+    bottom: unset;
+    flex-grow: 1;
 }

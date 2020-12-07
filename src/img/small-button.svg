@@ -1,1 +1,15 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 155 45"><defs><style>.cls-1{fill:url(#radial-gradient);}</style><radialGradient id="radial-gradient" cx="-264.27" cy="415.36" r="1.67" gradientTransform="matrix(-67.74, 40.45, 68.97, 9.72, -46374.39, 6630.28)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e37af6"/><stop offset="0.21" stop-color="#d575f6"/><stop offset="0.83" stop-color="#a161f4"/><stop offset="1" stop-color="#7c5af3"/></radialGradient></defs><path id="Path_201-2" data-name="Path 201-2" class="cls-1" d="M22.5,0h110a22.5,22.5,0,0,1,0,45H22.5a22.5,22.5,0,0,1,0-45Z"/></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 155 45" style="enable-background:new 0 0 155 45;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#Path_201_1_);}
+</style>
+<radialGradient id="Path_201_1_" cx="-211.5281" cy="454.8047" r="1.675" gradientTransform="matrix(-67.735 40.455 68.975 9.72 -45522.5781 4113.3311)" gradientUnits="userSpaceOnUse">
+	<stop  offset="0" style="stop-color:#E37AF6"/>
+	<stop  offset="0.209" style="stop-color:#D575F6"/>
+	<stop  offset="0.828" style="stop-color:#A161F4"/>
+	<stop  offset="1" style="stop-color:#7C5AF3"/>
+</radialGradient>
+<path id="Path_201" class="st0" d="M0,0h155v45H0c0-8.9,0-10.1,0-22.5S0,10.3,0,0z"/>
+</svg>

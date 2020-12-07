@@ -1,0 +1,127 @@
+@use "../abstracts/variables"as vars;
+@use "../abstracts/mixins"as mix;
+
+form {
+    margin-top: 48px;
+
+    // custom radio buttons based on: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_radio
+    .container {
+        color: vars.$mainText;
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        &:hover input~.checkmark {
+            background-color: vars.$not-black;
+        }
+        input:checked~.checkmark {
+            &:after{
+                display: block;
+            }
+        }
+        input{
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 26px;
+            width: 26px;
+            border: 2px solid vars.$main-solid-color;
+            border-radius: 50%;
+            &:after{
+                content: "";
+                position: absolute;
+                display: none;
+                top: 4px;
+                left: 4px;
+                width: 65%;
+                height: 65%;
+                border-radius: 50%;
+                background: vars.$main-solid-color;
+            }
+        }
+    }
+
+    div {
+        display: flex;
+        flex-flow: column-reverse;
+        margin-bottom: 1em;
+
+        label,
+        input {
+            transition: all 0.2s;
+            touch-action: manipulation;
+        }
+
+        label {
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: vars.$mainText;
+
+            span {
+                color: vars.$main-solid-color;
+            }
+        }
+
+        input {
+            background: none;
+            border: none;
+            border-bottom: 1px solid vars.$input-border;
+            font-family: inherit;
+            -webkit-appearance: none;
+            border-radius: 0;
+            padding: 0;
+            cursor: text;
+
+            &:focus {
+                outline: 0;
+                border-bottom: 1px solid vars.$main-solid-color;
+            }
+        }
+
+        // gracefully stolen from https://codepen.io/team/css-tricks/pen/XVBLRM
+        input:placeholder-shown+label {
+            cursor: text;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transform-origin: left bottom;
+            transform: translate(0, 1rem) scale(1);
+        }
+
+        // rare case where you still need webkits, these can for some reason not be placed on one line
+
+        ::-webkit-input-placeholder {
+            opacity: 0;
+            transition: inherit;
+        }
+
+        ::-moz-placeholder {
+            opacity: 0;
+            transition: inherit;
+        }
+
+        input:focus::-webkit-input-placeholder {
+            opacity: 1;
+        }
+
+        input:focus::-moz-placeholder {
+            opacity: 1;
+        }
+
+        input:not(:placeholder-shown)+label,
+        input:focus+label {
+            transform: translate(0, -.2rem) scale(1);
+            cursor: pointer;
+        }
+    }
+}

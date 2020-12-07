@@ -33,12 +33,42 @@
             </g>
         </svg>
         <div>
-            <h1>Not checked in</h1>
-            <h2 class="header__h2">Your currently not checked in</h2>
+            <h1>Login</h1>
+            <h2 class="header__h2">Login or sign up</h2>
         </div>
     </header>
     <main>
-        
+        <form action="">
+            <div class='together'>
+                <input type="email" name="email" id="email" placeholder="Fons.makker@gmail.com">
+                <label for="email">E-mail address <span>*</span></label>
+            </div>
+            <div class='together'>
+                <input type="password" name="password" id="password" placeholder="••••••••">
+                <label for="password">Password <span>*</span></label>
+            </div>
+            <section>
+                <label class="container">One
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Two
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Three
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+            </section>
+            <div class="apart row">
+                <input type="submit" value="Login" class="small_gradient_button col-6">
+                <input type="submit" value="Sign-up" class="small_gradient_button outline col-6">
+                OR
+                <input type="submit" value="Sign in with Google" class="small_gradient_button google col-12">
+            </div>
+        </form>
     </main>
 </body>
+
 </html>
