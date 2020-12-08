@@ -1,6 +1,11 @@
-.apart{
+.seperate{
     display: flex;
     width: 100%;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+}
+
+.margin{
+    margin: 24px 0;
 }

@@ -3,6 +3,7 @@
 
 *{
     box-sizing: border-box;
+    color: vars.$mainText;
 }
 
 html{
@@ -39,4 +40,8 @@ main{
 
 form{
     width: calc(100% - 32px);
+}
+
+form>.container{
+    text-align: center;
 }

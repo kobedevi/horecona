@@ -1,0 +1,36 @@
+@use "../abstracts/variables" as vars;
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/functions" as func;
+@use "../abstracts/extends";
+
+.action{
+    height: 60px;
+    width: calc(100% - 32px);
+    display: flex;
+    align-items: center;
+    background: vars.$button-color;
+    border-radius: 27px;
+    text-decoration: none;
+    @extend %dropshadow;
+
+    div{
+        display: flex;
+        flex-direction: row;
+        img{
+            margin-left: 16px;
+            fill: vars.$main-solid-color;
+            width: 32px;
+            max-height: 32px;
+        }
+        p{
+            font-size: func.rem(20px);
+            margin: 0 0 0 32px;
+        }
+    }
+    &.gradient{
+        background: url('../img/small-button.svg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}

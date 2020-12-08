@@ -4,7 +4,7 @@
 // grid concept, stolen from netninja
 @mixin grid($columns,$mgn) {
 	margin-right: $mgn;
-	margin-bottom: $mgn;
+	// margin-bottom: $mgn;
 	width: ((100% - (($columns - 1) * $mgn)) / $columns);
 	&:nth-child(#{func.toNOrNotToN($columns)}) {
 		margin-right: 0; 
