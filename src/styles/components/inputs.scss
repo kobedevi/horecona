@@ -7,8 +7,11 @@ form {
     // custom radio buttons based on: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_radio
     .container {
         color: vars.$mainText;
-        display: block;
+        display: flex;
+        align-items: center;
         position: relative;
+        // line height based on radio button size
+        line-height: 26px;
         padding-left: 35px;
         margin-bottom: 12px;
         cursor: pointer;
@@ -58,7 +61,7 @@ form {
 
         label,
         input {
-            transition: all 0.2s;
+            transition: transform 0.1s;
             touch-action: manipulation;
         }
 
