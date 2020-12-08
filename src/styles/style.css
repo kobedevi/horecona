@@ -529,6 +529,7 @@ header svg {
 .action div {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 .action div img {
   margin-left: 16px;
@@ -583,8 +584,10 @@ form {
 }
 form .container {
   color: white;
-  display: block;
+  display: flex;
+  align-items: center;
   position: relative;
+  line-height: 26px;
   padding-left: 35px;
   margin-bottom: 12px;
   cursor: pointer;
@@ -631,7 +634,7 @@ form div {
 }
 form div label,
 form div input {
-  transition: all 0.2s;
+  transition: transform 0.1s;
   touch-action: manipulation;
 }
 form div label {
