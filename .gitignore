@@ -1,0 +1,9 @@
+# ignore
+dist/*
+build/*
+node_modules/*
+.DS_Store
+Desktop.ini
+.Trashes
+._*
+.cache

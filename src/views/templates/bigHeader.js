@@ -1,0 +1,30 @@
+import banner from '../../img/banner.svg';
+
+export default `
+<header class="header__big">
+        <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px" y="0px" viewBox="0 0 355 393" style="enable-background:new 0 0 355 393;" xml:space="preserve">
+            <style type="text/css">
+                .st1 {
+                    fill: url(#Path_1-2_2_);
+                }
+            </style>
+            <g transform="matrix(1, 0, 0, 1, 0, 0)">
+
+                <radialGradient id="Path_1-2_2_" cx="-20.4705" cy="757.8248" r="1.197"
+                    gradientTransform="matrix(91.235 379.638 375.235 -110.433 -282445.1875 91461.4688)"
+                    gradientUnits="userSpaceOnUse">
+                    <stop offset="0" style="stop-color:#E37AF6" />
+                    <stop offset="0.209" style="stop-color:#D575F6" />
+                    <stop offset="0.828" style="stop-color:#A161F4" />
+                    <stop offset="1" style="stop-color:#7C5AF3" />
+                </radialGradient>
+                <path id="Path_1-2" class="st1" d="M24.3,0h306.4C344.1,0,355,9.9,355,22.2v321.4c0,12.2-10.9,22.2-24.3,22.2L24.3,393
+        C10.9,393,0,383.1,0,370.8V22.2C0,9.9,10.9,0,24.3,0z" />
+            </g>
+        </svg>
+        <div>
+            <img src="${banner}" alt="">
+        </div>
+    </header>
+`;

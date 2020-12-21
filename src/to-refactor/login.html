@@ -47,36 +47,15 @@
                 <input type="password" name="password" id="password" placeholder="••••••••">
                 <label for="password">Password <span>*</span></label>
             </div>
-            <section>
-                <label class="container">User
-                    <input type="radio" checked="checked" name="radio">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">Business
-                    <input type="radio" name="radio">
-                    <span class="checkmark"></span>
-                </label>
-            </section>
             <div class="seperate row">
-                <input type="submit" value="Login" class="small_gradient_button col-6">
-                <input type="submit" value="Sign-up" class="small_gradient_button outline col-6">
+                <input id="btnLogin" type="submit" value="Login" class="small_gradient_button col-6">
+                <input id="btnRegister" type="submit" value="Sign-up" class="small_gradient_button outline col-6">
                 <p class="margin">OR</p>
-                <input type="submit" value="Sign in with Google" class="small_gradient_button google col-12">
+                <input id="btnGoogle" type="submit" value="Sign in with Google" class="small_gradient_button google col-12">
             </div>
         </form>
-        <a href="" class="action">
-            <div>
-                <img src="img/icons/checkin.svg" alt="icon">
-                <p>Check in</p>
-            </div>
-        </a>
-        <a href="" class="action gradient">
-            <div>
-                <img src="img/icons/logout.svg" alt="icon">
-                <p>Log out</p>
-            </div>
-        </a>
     </main>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script type="module"src="./index.js"></script>
 </body>
-
 </html>

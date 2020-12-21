@@ -1,0 +1,36 @@
+{
+  "name": "eindwerk",
+  "version": "1.0.0",
+  "description": "horecona app",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build src/index.html --out-dir build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gdmgent-mobdev1/werkstuk-ek1-pgmgent-kobedevi.git"
+  },
+  "author": "kobe devillé",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gdmgent-mobdev1/werkstuk-ek1-pgmgent-kobedevi/issues"
+  },
+  "homepage": "https://github.com/gdmgent-mobdev1/werkstuk-ek1-pgmgent-kobedevi#readme",
+  "devDependencies": {
+    "eslint": "^7.15.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "navigo": "^7.1.2",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.29.0"
+  },
+  "dependencies": {
+    "express-handlebars": "^5.2.0",
+    "firebase": "^8.2.1",
+    "handlebars": "^4.7.6",
+    "lib": "^4.3.0",
+    "regenerator-runtime": "^0.13.7"
+  }
+}
