@@ -9,6 +9,7 @@ import 'firebase/auth';
 
 import Component from "../lib/Component";
 import Elements from "../lib/Elements";
+import { async } from 'regenerator-runtime/runtime';
 
 class LoginComponent extends Component {
     constructor(){
@@ -20,6 +21,13 @@ class LoginComponent extends Component {
             routerPath: '/login',
         });
     }    
+
+    showError({message}) {
+        if(!message) return;
+        const errorContainer = document.querySelector('form .error-container');
+        errorContainer.innerHTML = message;
+        errorContainer.classList.remove('hide');
+    }
 
     render(){
         // create a container
@@ -36,6 +44,7 @@ class LoginComponent extends Component {
         const main = document.createElement('main');
         // form
         const form = document.createElement('form');
+        form.setAttribute('method', 'POST');
         form.insertAdjacentHTML("beforeend", Elements.form({type: 'login'}));
         
         // create buttons
@@ -44,7 +53,19 @@ class LoginComponent extends Component {
         
         const loginBtn = Elements.submitButton({
             textContent: 'Login',
-            onClick: null,
+            onClick: async() => {
+                const formData = new FormData(document.querySelector('form'));
+                const email = formData.get('email');
+                const password = formData.get('password');
+                try {
+                    await firebase.auth()
+                    .signInWithEmailAndPassword(email, password);
+                    window.location.replace('/tester');
+                }
+                catch(err) {
+                    this.showError(err);
+                }
+            },
             classes: ['small_gradient_button', 'col-6'],
         });
 

@@ -8,6 +8,8 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+import User from '../User';
+
 import Component from "../lib/Component";
 import Elements from "../lib/Elements";
 
@@ -22,11 +24,40 @@ class RegisterComponent extends Component {
         });
     }    
 
-    showError = ({message}) => {
+    storeAditional(userData) {
+        const formData = new FormData(document.querySelector('form'));
+        const type = formData.get('type'); 
+        const user = new User(userData, type);
+        user.storeUser();
+    }
+
+    showError({message}) {
         if(!message) return;
         const errorContainer = document.querySelector('form .error-container');
         errorContainer.innerHTML = message;
         errorContainer.classList.remove('hide');
+    }
+
+    async register(){
+        const formData = new FormData(document.querySelector('form'));
+        const password = formData.get('password'); 
+        const repeatPassword = formData.get('repeat-password'); 
+        // if passwords match, create account
+        if(password == repeatPassword){
+            const email = formData.get('email');
+            try {
+                await firebase.auth()
+                .createUserWithEmailAndPassword(email, password);
+                // window.location.replace('/');
+                firebase.auth().onAuthStateChanged(this.storeAditional);
+            } 
+            catch(err) {
+                this.showError(err);
+            }
+        } else {
+            // passwords don't match, show error
+            this.showError({message: `Passwords don't match.`});
+        }
     }
 
     render(){
@@ -44,6 +75,7 @@ class RegisterComponent extends Component {
         const main = document.createElement('main');
         // form
         const form = document.createElement('form');
+        form.setAttribute('method', 'POST');
         form.insertAdjacentHTML("beforeend", Elements.form({type: 'register'}));
         
         // create buttons
@@ -52,29 +84,9 @@ class RegisterComponent extends Component {
         
         const registerBtn = Elements.submitButton({
             textContent: 'Register',
-            onClick: async () => {
-                const formData = new FormData(document.querySelector('form'));
-                const password = formData.get('password'); 
-                const repeatPassword = formData.get('repeat-password'); 
-                // if passwords match, create account
-                if(password == repeatPassword){
-                    const email = formData.get('email');
-                    try {
-                        await firebase.auth()
-                        .createUserWithEmailAndPassword(email, password);
-                        window.location.replace('/');
-                    } 
-                    catch(err) {
-                        this.showError(err);
-                    }
-                } else {
-                    // passwords don't match, show error
-                    this.showError({message: `Passwords don't match.`})
-                }
-            },
+            onClick: this.register.bind(this),
             classes: ['small_gradient_button', 'col-12'],
         });
-
         const text = `<p class="margin">OR</p>`;
 
         const googleBtn = Elements.submitButton({
@@ -83,6 +95,7 @@ class RegisterComponent extends Component {
                 const provider = new firebase.auth.GoogleAuthProvider();
                 await firebase.auth()
                 .signInWithPopup(provider);
+                firebase.auth().onAuthStateChanged(this.storeAditional);
             },
             classes: ['small_gradient_button', 'google','col-12'],
         });
@@ -101,11 +114,3 @@ class RegisterComponent extends Component {
 }
 
 export default RegisterComponent;
-
-
-{/* <div class="seperate row">
-<input id="btnLogin" type="submit" value="Login" class="small_gradient_button col-6">
-<input id="btnRegister" type="submit" value="Sign-up" class="small_gradient_button outline col-6">
-<p class="margin">OR</p>
-<input type="submit" value="Sign in with Google" class="small_gradient_button google col-12">
-</div> */}

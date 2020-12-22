@@ -1,6 +1,6 @@
 export default `
 
-    <div class="error-container"></div>
+    <div class="error-container hide"></div>
     <div class='together'>
         <input type="email" name="email" id="email" placeholder="Fons.makker@gmail.com">
         <label for="email">E-mail address <span>*</span></label>

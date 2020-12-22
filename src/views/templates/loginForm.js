@@ -1,6 +1,6 @@
 export default `
 
-<form action="">
+<div class="error-container hide"></div>
     <div class='together'>
         <input type="email" name="email" id="email" placeholder="Fons.makker@gmail.com">
         <label for="email">E-mail address <span>*</span></label>
@@ -15,6 +15,5 @@ export default `
         <p class="margin">OR</p>
         <input id="btnGoogle" type="submit" value="Sign in with Google" class="small_gradient_button google col-12">
     </div> --}}
-</form>
 
 `;

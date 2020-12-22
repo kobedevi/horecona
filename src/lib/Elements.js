@@ -41,7 +41,6 @@ const  Elements = {
             const template = Handlebars.compile(loginForm);
             form = template();
         } else {
-            console.log('register');
             const template = Handlebars.compile(registerForm);
             form = template();
         }
