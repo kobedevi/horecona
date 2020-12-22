@@ -15,17 +15,24 @@ html{
     background-color: vars.$not-black;
 }
 
-body{
+#appContainer{
     box-shadow: 0 0 0 10pt vars.$shadow;
     border-radius: 25px;
     padding: 10px 10px 0;
     display: flex;
     flex-direction: column;
     width: 375px;
-    height: 812px;
+    height: 812px !important;
     background-image: url(../img/background.svg);
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+.pageContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
 }
 
 main{
@@ -44,4 +51,8 @@ form{
 
 form>.container{
     text-align: center;
+}
+
+.hide {
+	display: none !important;
 }

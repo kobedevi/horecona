@@ -4,5 +4,8 @@
 This was created by Devillé Kobe!
 
 ### Where did you leave off?
-- still have to do rerendering #7 (destroy children on other page)
-- routing #8 8:35
+- login/register forms are rendered
+- temporary redirects
+- register form works (register with google should default a type user)
+- email login needs to be made
+- routing #8 19:11

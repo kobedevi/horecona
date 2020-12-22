@@ -9,16 +9,20 @@ class HomeComponent extends Component {
     constructor(){
         super({
             name: 'home',
-            // model: null
+            model: {
+                home: null,
+            },
+            routerPath: '/',
         })
     }
 
     render(){
         // create a home container
-        const homeContainer = document.querySelector('body');
+        const homeContainer = document.createElement('section');
+        homeContainer.classList.add('pageContainer');
         // header
         homeContainer.insertAdjacentHTML("beforeend", Elements.createHeader({
-            size:2,
+            size:2,  
         }));
 
         // title
@@ -27,7 +31,7 @@ class HomeComponent extends Component {
         // subtitle
         main.insertAdjacentHTML('beforeend', Elements.subtitle({textContent: 'Find businesses that are corona proof <br>around you!'}))
         // button
-        main.insertAdjacentHTML("beforeend", Elements.buttonLink({href:"#", textContent:"Get Started"}));
+        main.insertAdjacentHTML("beforeend", Elements.buttonLink({href:"/login", textContent:"Get Started"}));
         homeContainer.appendChild(main);
         return homeContainer;
     }

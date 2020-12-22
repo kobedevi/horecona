@@ -1,16 +1,18 @@
 import App from './App';
-import { HomeComponent } from './Components';
-import Router from './Router';
+import { HomeComponent, LoginComponent, RegisterComponent } from './Components';
+
+import 'firebase/firestore';
+import initFirebase from './lib/Firebase';
+import 'firebase/auth';
 
 const initApp = () => {
-    const appContainer = document.querySelector('html');
+    initFirebase();
+    const appContainer = document.getElementById('appContainer');
     
     const app = new App(appContainer);
-    app.showComponent(new HomeComponent());
-
-    Router.getRouter().on('/test', () => {
-        console.log('testing...');
-    }).resolve();
+    app.addComponent(new HomeComponent());
+    app.addComponent(new LoginComponent());
+    app.addComponent(new RegisterComponent());
 }
 
 window.addEventListener('load', initApp);
