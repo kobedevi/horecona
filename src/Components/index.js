@@ -5,9 +5,9 @@ import ProfileInfoComponent from './ProfileInfoComponent';
 import TestComponent from './TestComponent';
 
 export {
-    HomeComponent,
-    LoginComponent,
-    RegisterComponent,
-    TestComponent,
-    ProfileInfoComponent,
-}
+  HomeComponent,
+  LoginComponent,
+  RegisterComponent,
+  TestComponent,
+  ProfileInfoComponent,
+};

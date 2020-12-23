@@ -13,6 +13,6 @@ module.exports = {
   rules: {
     'no-console': 'off',
     'linebreak-style': 'off',
-    'indent-size': [true, 4],
+    'class-methods-use-this': 0,
   },
 };
