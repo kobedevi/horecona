@@ -8,8 +8,6 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-import User from '../User';
-
 import Form from "../lib/Form";
 import Elements from "../lib/Elements";
 
@@ -22,7 +20,7 @@ class RegisterComponent extends Form {
             },
             routerPath: '/register',
         });
-    }    
+    }
 
     render(){
         // create a container
@@ -48,6 +46,7 @@ class RegisterComponent extends Form {
         
         const registerBtn = Elements.submitButton({
             textContent: 'Register',
+            // call super function register and bind 'this' to keep context
             onClick: super.register.bind(this),
             classes: ['small_gradient_button', 'col-12'],
         });
@@ -55,12 +54,8 @@ class RegisterComponent extends Form {
 
         const googleBtn = Elements.submitButton({
             textContent: 'Sign in with Google',
-            onClick: async () => {
-                const provider = new firebase.auth.GoogleAuthProvider();
-                await firebase.auth()
-                .signInWithPopup(provider);
-                firebase.auth().onAuthStateChanged(super.storeAditional);
-            },
+            // call super function login and bind 'this' to keep context
+            onClick: super.loginGoogle.bind(this),
             classes: ['small_gradient_button', 'google','col-12'],
         });
 

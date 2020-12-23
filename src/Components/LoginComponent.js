@@ -45,19 +45,7 @@ class LoginComponent extends Form {
         
         const loginBtn = Elements.submitButton({
             textContent: 'Login',
-            onClick: async() => {
-                const formData = new FormData(document.querySelector('form'));
-                const email = formData.get('email');
-                const password = formData.get('password');
-                try {
-                    await firebase.auth()
-                    .signInWithEmailAndPassword(email, password);
-                    window.location.replace('/tester');
-                }
-                catch(err) {
-                    super.showError(err);
-                }
-            },
+            onClick: super.loginEmail.bind(this),
             classes: ['small_gradient_button', 'col-6'],
         });
 
@@ -71,12 +59,7 @@ class LoginComponent extends Form {
 
         const googleBtn = Elements.submitButton({
             textContent: 'Sign in with Google',
-            onClick: async () => {
-                const provider = new firebase.auth.GoogleAuthProvider();
-                await firebase.auth()
-                .signInWithPopup(provider);
-                firebase.auth().onAuthStateChanged(super.storeAditional);
-            },
+            onClick: super.loginGoogle.bind(this),
             classes: ['small_gradient_button', 'google','col-12'],
         });
 

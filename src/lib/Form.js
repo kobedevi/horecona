@@ -6,6 +6,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+import User from './User';
 import Component from "./Component";
 
 class Form extends Component{
@@ -41,7 +42,6 @@ class Form extends Component{
             try {
                 await firebase.auth()
                 .createUserWithEmailAndPassword(email, password);
-                // window.location.replace('/');
                 firebase.auth().onAuthStateChanged(this.storeAditional);
             } 
             catch(err) {
@@ -50,6 +50,27 @@ class Form extends Component{
         } else {
             // passwords don't match, show error
             this.showError({message: `Passwords don't match.`});
+        }
+    }
+
+    async loginGoogle(){
+        const provider = new firebase.auth.GoogleAuthProvider();
+        await firebase.auth()
+        .signInWithPopup(provider);
+        firebase.auth().onAuthStateChanged(this.storeAditional);
+    }
+
+    async loginEmail(){
+        const formData = new FormData(document.querySelector('form'));
+        const email = formData.get('email');
+        const password = formData.get('password');
+        try {
+            await firebase.auth()
+            .signInWithEmailAndPassword(email, password);
+            window.location.replace('/tester');
+        }
+        catch(err) {
+            this.showError(err);
         }
     }
 }
