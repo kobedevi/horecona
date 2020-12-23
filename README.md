@@ -11,3 +11,4 @@ This was created by Devillé Kobe!
 - check if user already exists when signing up with Google DONE
 - add profile info DONE
 - routing #8 19:11
+- api getter -> businessInfo nekeer tim z'n videos verder kijken

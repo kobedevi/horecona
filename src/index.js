@@ -1,7 +1,8 @@
 // import firebase from 'firebase/app';
 import App from './App';
 import {
-  HomeComponent, LoginComponent, RegisterComponent, ProfileInfoComponent, TestComponent,
+  // eslint-disable-next-line max-len
+  HomeComponent, LoginComponent, RegisterComponent, ProfileInfoComponent, BusinessInfoComponent, TestComponent,
 } from './Components';
 
 import 'firebase/firestore';
@@ -25,6 +26,7 @@ const initApp = async () => {
   app.addComponent(new LoginComponent());
   app.addComponent(new RegisterComponent());
   app.addComponent(new ProfileInfoComponent());
+  app.addComponent(new BusinessInfoComponent());
   app.addComponent(new TestComponent());
 };
 

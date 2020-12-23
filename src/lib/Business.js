@@ -6,7 +6,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-class User {
+class Business {
   constructor(user, type) {
     this.user = user;
     this.type = type;
@@ -61,6 +61,8 @@ class User {
       .then(async (data) => {
         docID = data.docs[0].id;
         const infoData = {
+          Business: formData.get('businessName'),
+          maxcap: formData.get('maximumCapacity'),
           firstName: formData.get('firstName'),
           surName: formData.get('surname'),
           dateOfBirth: formData.get('dateOfBirth'),
@@ -72,4 +74,4 @@ class User {
   }
 }
 
-export default User;
+export default Business;

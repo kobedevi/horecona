@@ -3,6 +3,7 @@ import bigHeader from '../views/templates/bigHeader';
 import loginForm from '../views/templates/loginForm';
 import registerForm from '../views/templates/registerForm';
 import profileInfoForm from '../views/templates/profileInfoForm';
+import businessInfoForm from '../views/templates/businessInfoForm';
 
 const Handlebars = require('handlebars');
 
@@ -47,6 +48,9 @@ const Elements = {
       form = template();
     } else if (type === 'profileInfo') {
       const template = Handlebars.compile(profileInfoForm);
+      form = template();
+    } else if (type === 'businessInfo') {
+      const template = Handlebars.compile(businessInfoForm);
       form = template();
     }
     return form;
