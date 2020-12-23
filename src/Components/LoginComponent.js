@@ -7,11 +7,10 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-import Component from "../lib/Component";
+import Form from "../lib/Form";
 import Elements from "../lib/Elements";
-import { async } from 'regenerator-runtime/runtime';
 
-class LoginComponent extends Component {
+class LoginComponent extends Form {
     constructor(){
         super({
             name: 'login',
@@ -21,13 +20,6 @@ class LoginComponent extends Component {
             routerPath: '/login',
         });
     }    
-
-    showError({message}) {
-        if(!message) return;
-        const errorContainer = document.querySelector('form .error-container');
-        errorContainer.innerHTML = message;
-        errorContainer.classList.remove('hide');
-    }
 
     render(){
         // create a container
@@ -63,7 +55,7 @@ class LoginComponent extends Component {
                     window.location.replace('/tester');
                 }
                 catch(err) {
-                    this.showError(err);
+                    super.showError(err);
                 }
             },
             classes: ['small_gradient_button', 'col-6'],
@@ -83,6 +75,7 @@ class LoginComponent extends Component {
                 const provider = new firebase.auth.GoogleAuthProvider();
                 await firebase.auth()
                 .signInWithPopup(provider);
+                firebase.auth().onAuthStateChanged(super.storeAditional);
             },
             classes: ['small_gradient_button', 'google','col-12'],
         });
@@ -92,13 +85,6 @@ class LoginComponent extends Component {
         div.insertAdjacentHTML('beforeend', text);
         div.appendChild(googleBtn);
 
-
-        /*<div class="seperate row">
-            <input id="btnLogin" type="submit" value="Login" class="small_gradient_button col-6">
-            <input id="btnRegister" type="submit" value="Sign-up" class="small_gradient_button outline col-6">
-            <p class="margin">OR</p>
-            <input id="btnGoogle" type="submit" value="Sign in with Google" class="small_gradient_button google col-12">
-        </div> */
         form.appendChild(div);
         main.appendChild(form);
         container.insertAdjacentHTML('beforeend',`<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>`);

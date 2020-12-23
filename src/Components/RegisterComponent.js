@@ -10,10 +10,10 @@ import 'firebase/auth';
 
 import User from '../User';
 
-import Component from "../lib/Component";
+import Form from "../lib/Form";
 import Elements from "../lib/Elements";
 
-class RegisterComponent extends Component {
+class RegisterComponent extends Form {
     constructor(){
         super({
             name: 'register',
@@ -23,42 +23,6 @@ class RegisterComponent extends Component {
             routerPath: '/register',
         });
     }    
-
-    storeAditional(userData) {
-        const formData = new FormData(document.querySelector('form'));
-        const type = formData.get('type'); 
-        const user = new User(userData, type);
-        user.storeUser();
-    }
-
-    showError({message}) {
-        if(!message) return;
-        const errorContainer = document.querySelector('form .error-container');
-        errorContainer.innerHTML = message;
-        errorContainer.classList.remove('hide');
-    }
-
-    async register(){
-        const formData = new FormData(document.querySelector('form'));
-        const password = formData.get('password'); 
-        const repeatPassword = formData.get('repeat-password'); 
-        // if passwords match, create account
-        if(password == repeatPassword){
-            const email = formData.get('email');
-            try {
-                await firebase.auth()
-                .createUserWithEmailAndPassword(email, password);
-                // window.location.replace('/');
-                firebase.auth().onAuthStateChanged(this.storeAditional);
-            } 
-            catch(err) {
-                this.showError(err);
-            }
-        } else {
-            // passwords don't match, show error
-            this.showError({message: `Passwords don't match.`});
-        }
-    }
 
     render(){
         // create a container
@@ -84,7 +48,7 @@ class RegisterComponent extends Component {
         
         const registerBtn = Elements.submitButton({
             textContent: 'Register',
-            onClick: this.register.bind(this),
+            onClick: super.register.bind(this),
             classes: ['small_gradient_button', 'col-12'],
         });
         const text = `<p class="margin">OR</p>`;
@@ -95,7 +59,7 @@ class RegisterComponent extends Component {
                 const provider = new firebase.auth.GoogleAuthProvider();
                 await firebase.auth()
                 .signInWithPopup(provider);
-                firebase.auth().onAuthStateChanged(this.storeAditional);
+                firebase.auth().onAuthStateChanged(super.storeAditional);
             },
             classes: ['small_gradient_button', 'google','col-12'],
         });
