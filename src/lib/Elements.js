@@ -9,14 +9,10 @@ const Handlebars = require('handlebars');
 
 const Elements = {
 
-  createHeader({ size = 1, title = 'Title', subtitle = '' }) {
-    if (size < 1 || size > 2) return null;
+  createHeader(headerData) {
+    if (headerData.size < 1 || headerData.size > 2) return null;
     let header;
-    if (size === 1) {
-      const headerData = {
-        title,
-        subtitle,
-      };
+    if (headerData.size === 1) {
       const template = Handlebars.compile(smallHeader);
       header = template({ headerData });
     } else {

@@ -48,10 +48,8 @@ class BusinessInfoComponent extends Component {
     const form = document.createElement('form');
 
     if (!this.model.businesses) {
-      console.log('business names are loading');
       this.loadBusinesses();
     } else {
-      console.log('business names loaded!');
       // create select menu
       const div = document.createElement('div');
       div.classList.add('together');
