@@ -23,7 +23,7 @@ class BusinessInfoComponent extends Component {
 
   async loadBusinesses() {
     if (!this.businessLoaded) {
-      await Businesses.getAll()
+      await Businesses.getNonRegistered()
         .then((data) => {
           this.model.businesses = data;
         });
@@ -36,7 +36,7 @@ class BusinessInfoComponent extends Component {
     const tempUser = new Business();
     await tempUser.getThisUser()
       .then(() => {
-        tempUser.aditionalInfo(formData);
+        tempUser.additionalInfo(formData);
       });
   }
 
@@ -56,7 +56,7 @@ class BusinessInfoComponent extends Component {
       const div = document.createElement('div');
       div.classList.add('together');
       const select = document.createElement('select');
-      select.setAttribute('name', 'business');
+      select.setAttribute('name', 'businessName');
       // eslint-disable-next-line no-restricted-syntax
       for (const [, value] of Object.entries(this.model.businesses)) {
         const option = document.createElement('option');
@@ -66,7 +66,7 @@ class BusinessInfoComponent extends Component {
       }
       div.appendChild(select);
       const label = document.createElement('label');
-      label.setAttribute('for', 'business');
+      label.setAttribute('for', 'businessName');
       label.innerHTML = 'Business name';
       const required = document.createElement('span');
       required.innerHTML = '*';

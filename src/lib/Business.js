@@ -69,6 +69,9 @@ class Business {
           phoneNumber: formData.get('phone'),
         };
         await db.collection('users').doc(docID).collection('info').add(infoData)
+          .then(async () => {
+            await db.collection('registeredBusinesses').add({ name: infoData.Business });
+          })
           .then(() => window.location.replace('/tester'));
       });
   }
