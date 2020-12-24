@@ -8,6 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "parcel build src/index.html --out-dir build"
   },
+  "browserslist":[
+    "last 1 Chrome version"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gdmgent-mobdev1/werkstuk-ek1-pgmgent-kobedevi.git"

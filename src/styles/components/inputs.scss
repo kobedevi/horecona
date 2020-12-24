@@ -81,7 +81,7 @@ form {
             }
         }
 
-        input {
+        input, select {
             color: vars.$mainText;
             background: none;
             border: none;
@@ -98,8 +98,24 @@ form {
             }
         }
 
+        select{
+            background: none;
+            option{
+                color: black !important;
+            }
+        }
+
         // gracefully stolen from https://codepen.io/team/css-tricks/pen/XVBLRM
         input:placeholder-shown+label {
+            cursor: text;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transform-origin: left bottom;
+            transform: translate(0, 1rem) scale(1);
+        }
+
+        select:placeholder-shown+label {
             cursor: text;
             white-space: nowrap;
             overflow: hidden;

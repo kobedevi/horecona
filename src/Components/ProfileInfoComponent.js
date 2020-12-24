@@ -33,7 +33,7 @@ class ProfileInfoComponent extends Component {
     // create a container
     let user = localStorage.getItem('user');
     user = JSON.parse(user);
-    if (user.type === 'business') window.location.replace('/businessInfo');
+    if (user.type === 'Business') window.location.replace('/businessInfo');
     const container = document.createElement('section');
     container.classList.add('pageContainer');
 

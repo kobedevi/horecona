@@ -89,6 +89,28 @@ const Elements = {
     }
     return button;
   },
+  createHeaderTemp({
+    size = 1,
+    textContent = '',
+  }) {
+    if (size < 1 || size > 6) return null;
+    const header = document.createElement(`h${size}`);
+    header.textContent = textContent;
+    return header;
+  },
+  createButtonTemp({
+    textContent = '',
+    action = null,
+  }) {
+    const button = document.createElement('button');
+    button.textContent = textContent;
+    if (action != null) {
+      button.addEventListener('click', () => {
+        action();
+      });
+    }
+    return button;
+  },
 };
 
 export default Elements;

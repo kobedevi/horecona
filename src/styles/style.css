@@ -393,6 +393,10 @@ form > .container {
   display: none !important;
 }
 
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
 @font-face {
   font-family: FuturaBook;
   src: url("../fonts/FuturaPTBook.ttf");
@@ -661,7 +665,7 @@ form div label {
 form div label span {
   color: #7C5AF3;
 }
-form div input {
+form div input, form div select {
   color: white;
   background: none;
   border: none;
@@ -672,11 +676,25 @@ form div input {
   padding: 0;
   cursor: text;
 }
-form div input:focus {
+form div input:focus, form div select:focus {
   outline: 0;
   border-bottom: 1px solid #7C5AF3;
 }
+form div select {
+  background: none;
+}
+form div select option {
+  color: black !important;
+}
 form div input:placeholder-shown + label {
+  cursor: text;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform-origin: left bottom;
+  transform: translate(0, 1rem) scale(1);
+}
+form div select:placeholder-shown + label {
   cursor: text;
   white-space: nowrap;
   overflow: hidden;

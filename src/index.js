@@ -6,7 +6,7 @@ import {
 } from './Components';
 
 import 'firebase/firestore';
-import initFirebase from './lib/Firebase';
+// import initFirebase from './lib/Firebase';
 import 'firebase/auth';
 
 // const onAuthStateChanged = async (user) => {
@@ -18,7 +18,7 @@ import 'firebase/auth';
 // };
 
 const initApp = async () => {
-  initFirebase();
+  // initFirebase();
   const appContainer = document.getElementById('appContainer');
 
   const app = new App(appContainer);

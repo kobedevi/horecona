@@ -7,17 +7,28 @@ import 'regenerator-runtime/runtime';
 import Elements from '../lib/Elements';
 import Component from '../lib/Component';
 import Business from '../lib/Business';
+import Businesses from '../lib/Businesses';
 
 class BusinessInfoComponent extends Component {
   constructor() {
     super({
       name: 'businessInfo',
       model: {
-        businessinfo: null,
+        businesses: null,
       },
       routerPath: '/businessInfo',
     });
-    this.user = null;
+    this.businessLoaded = false;
+  }
+
+  async loadBusinesses() {
+    if (!this.businessLoaded) {
+      await Businesses.getAll()
+        .then((data) => {
+          this.model.businesses = data;
+        });
+      this.businessLoaded = true;
+    }
   }
 
   async saveData() {
@@ -29,36 +40,41 @@ class BusinessInfoComponent extends Component {
       });
   }
 
-  apiGetter() {
-    return new Promise((resolve) => {
-      const url = 'https://data.stad.gent/api/records/1.0/search/?dataset=koop-lokaal-horeca&q=&rows=500&facet=postcode&facet=gemeente&refine.postcode=9000';
-
-      fetch(url)
-        .then((data) => data.json())
-        .then((data) => resolve(data));
-    });
-  }
-
-  async getBusinesses() {
-    const demoArray = await this.apiGetter();
-
-    const select = document.createElement('select');
-    select.setAttribute('name', 'business');
-
-    demoArray.forEach((element) => {
-      const option = document.createElement('option');
-      option.setAttribute('value', element.name);
-      option.innerHTML = element.name;
-      select.appendChild(option);
-    });
-
-    return select;
-  }
-
   render() {
     // create a container
     const container = document.createElement('section');
     container.classList.add('pageContainer');
+
+    const form = document.createElement('form');
+
+    if (!this.model.businesses) {
+      console.log('business names are loading');
+      this.loadBusinesses();
+    } else {
+      console.log('business names loaded!');
+      // create select menu
+      const div = document.createElement('div');
+      div.classList.add('together');
+      const select = document.createElement('select');
+      select.setAttribute('name', 'business');
+      // eslint-disable-next-line no-restricted-syntax
+      for (const [, value] of Object.entries(this.model.businesses)) {
+        const option = document.createElement('option');
+        option.setAttribute('value', value.name);
+        option.innerHTML = value.name;
+        select.appendChild(option);
+      }
+      div.appendChild(select);
+      const label = document.createElement('label');
+      label.setAttribute('for', 'business');
+      label.innerHTML = 'Business name';
+      const required = document.createElement('span');
+      required.innerHTML = '*';
+      label.appendChild(required);
+      div.appendChild(label);
+
+      form.appendChild(div);
+    }
 
     // header
     container.insertAdjacentHTML('beforeend', Elements.createHeader({
@@ -69,13 +85,6 @@ class BusinessInfoComponent extends Component {
 
     const main = document.createElement('main');
     // form
-    const form = document.createElement('form');
-
-    const div = document.createElement('div');
-    div.classList.add('together');
-    const select = this.getBusinesses();
-    div.appendChild(select);
-    form.appendChild(div);
 
     form.insertAdjacentHTML('beforeend', Elements.form({
       type: 'businessInfo',

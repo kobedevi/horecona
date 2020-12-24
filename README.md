@@ -10,5 +10,5 @@ This was created by Devillé Kobe!
 - temporary redirect to /tester
 - check if user already exists when signing up with Google DONE
 - add profile info DONE
-- routing #8 19:11
+- firebase #9 10:50
 - api getter -> businessInfo nekeer tim z'n videos verder kijken

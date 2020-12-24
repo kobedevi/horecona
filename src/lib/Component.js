@@ -7,9 +7,10 @@
 class Component {
   constructor({ name, model, routerPath }) {
     this.name = name;
+    this.props = null;
     this.model = this.proxyModel(model);
-    this.reRender = null;
     this.routerPath = routerPath;
+    this.reRender = null;
   }
 
   proxyModel(model) {

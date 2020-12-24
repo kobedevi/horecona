@@ -4,11 +4,13 @@
 
 import Component from './lib/Component';
 import Router from './Router';
+import initFirebase from './lib/Firebase';
 
 class App {
   constructor(parent) {
     this.parent = parent;
     this.components = [];
+    initFirebase();
   }
 
   clearParent() {
@@ -19,22 +21,36 @@ class App {
 
   addComponent(component) {
     if (!(component instanceof Component)) return;
-    // when a component asks to rerender
-    // eslint-disable-next-line no-param-reassign
+
+    // destructure component
+    const { name, routerPath } = component;
+
+    // when component asks to rerender
     component.reRender = () => this.showComponent(component);
+
+    // add component to our app
     this.components.push(component);
 
     // add to router
-    Router.getRouter().on(component.routerPath, () => {
-      this.showComponent(component.name);
-    }).resolve();
+    // docs: https://github.com/krasimir/navigo
+    Router.getRouter().on(
+      routerPath,
+      (params) => {
+        this.showComponent({
+          name,
+          props: params,
+        });
+      },
+    ).resolve();
   }
 
-  showComponent(name) {
-    const foundComponent = this.components.find((curComp) => curComp.name === name);
-    if (!foundComponent) return;
-    this.clearParent();
-    this.parent.appendChild(foundComponent.render());
+  showComponent({ name, props }) {
+    const foundComponent = this.components.find((component) => component.name === name);
+    if (foundComponent) {
+      this.clearParent();
+      if (props) foundComponent.props = props;
+      this.parent.appendChild(foundComponent.render());
+    }
   }
 }
 
