@@ -3,6 +3,7 @@ import LoginComponent from './LoginComponent';
 import RegisterComponent from './RegisterComponent';
 import ProfileInfoComponent from './ProfileInfoComponent';
 import BusinessInfoComponent from './BusinessInfoComponent';
+import UserDashboard from './UserDashboard';
 import TestComponent from './TestComponent';
 
 export {
@@ -12,4 +13,5 @@ export {
   TestComponent,
   ProfileInfoComponent,
   BusinessInfoComponent,
+  UserDashboard,
 };
