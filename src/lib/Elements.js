@@ -4,6 +4,8 @@ import loginForm from '../views/templates/loginForm';
 import registerForm from '../views/templates/registerForm';
 import profileInfoForm from '../views/templates/profileInfoForm';
 import businessInfoForm from '../views/templates/businessInfoForm';
+import actionBtn from '../views/templates/actionBtn';
+import navigation from '../views/templates/navigation';
 
 const Handlebars = require('handlebars');
 
@@ -28,6 +30,16 @@ const Elements = {
 
   subtitle({ textContent = 'This is a title' }) {
     return `<p>${textContent}</p>`;
+  },
+
+  subsubtitle({ textContent = 'this is a title' }) {
+    return `<h3 class="textMargin">${textContent}</h3>`;
+  },
+
+  actionBtn({ textContent = 'Action description', icon = 'checkin', href = '#' }) {
+    const template = Handlebars.compile(actionBtn);
+    if (icon === 'checkin') return template({ textContent, icon, href });
+    if (icon === 'logout') return template({ textContent, icon, href });
   },
 
   buttonLink({ textContent = 'This is your button', href = '#', target = '_self' }) {
@@ -106,6 +118,37 @@ const Elements = {
       });
     }
     return button;
+  },
+  navigation({ active = null, home = '/userdashboard', profile = '/userdashboard' }) {
+    let nav;
+    if (active === 'home') {
+      const classData = {
+        home: {
+          active: 'active',
+          href: home,
+        },
+        profile: {
+          active: '',
+          href: profile,
+        },
+      };
+      const template = Handlebars.compile(navigation);
+      nav = template({ classData });
+    } else if (active === 'profile') {
+      const classData = {
+        home: {
+          active: '',
+          href: home,
+        },
+        profile: {
+          active: 'active',
+          href: profile,
+        },
+      };
+      const template = Handlebars.compile(navigation);
+      nav = template({ classData });
+    }
+    return nav;
   },
 };
 

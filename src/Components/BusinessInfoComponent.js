@@ -55,11 +55,14 @@ class BusinessInfoComponent extends Component {
       div.classList.add('together');
       const select = document.createElement('select');
       select.setAttribute('name', 'businessName');
+      // for each object in businesses model
       // eslint-disable-next-line no-restricted-syntax
       for (const [, value] of Object.entries(this.model.businesses)) {
+        // create an option
         const option = document.createElement('option');
         option.setAttribute('value', value.name);
         option.innerHTML = value.name;
+        // append to select
         select.appendChild(option);
       }
       div.appendChild(select);
@@ -70,7 +73,6 @@ class BusinessInfoComponent extends Component {
       required.innerHTML = '*';
       label.appendChild(required);
       div.appendChild(label);
-
       form.appendChild(div);
     }
 

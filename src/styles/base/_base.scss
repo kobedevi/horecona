@@ -57,6 +57,13 @@ form>.container{
 	display: none !important;
 }
 
+main.left{
+    align-items: flex-start;
+    .textMargin{
+        margin-left: 16px;
+    }
+}
+
 // change date picker input icon to white
 ::-webkit-calendar-picker-indicator {
     filter: invert(1);

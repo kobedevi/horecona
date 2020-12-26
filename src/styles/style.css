@@ -393,6 +393,13 @@ form > .container {
   display: none !important;
 }
 
+main.left {
+  align-items: flex-start;
+}
+main.left .textMargin {
+  margin-left: 16px;
+}
+
 ::-webkit-calendar-picker-indicator {
   filter: invert(1);
 }
@@ -530,6 +537,31 @@ header svg {
 
 .small_gradient_button, .action {
   filter: drop-shadow(0 7px 6px rgba(0, 0, 0, 0.27));
+}
+
+.navigation {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 32px;
+}
+.navigation img {
+  width: 20px;
+}
+.navigation a.active {
+  position: relative;
+}
+.navigation a.active::after {
+  position: absolute;
+  content: " ";
+  width: 6px;
+  height: 6px;
+  border-radius: 6px;
+  background-color: #7C5AF3;
+  bottom: -16px;
+  left: calc(50% - 3px);
 }
 
 .action {
