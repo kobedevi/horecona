@@ -17,7 +17,9 @@ const Scanner = {
         // eslint-disable-next-line no-undef
         const html5QrCode = new Html5Qrcode('reader'); // <-- reader-div element id
 
-        const aspectRatio = window.screen.width / window.screen.height;
+        // const aspectRatio = window.screen.width / window.screen.height;
+        // to avoid weird ratios
+        const aspectRatio = 10.7 / 16;
 
         // Start the scanner
         html5QrCode.start(
