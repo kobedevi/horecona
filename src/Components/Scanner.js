@@ -5,17 +5,19 @@
 import 'regenerator-runtime/runtime';
 
 import Elements from '../lib/Elements';
+import Scannerlib from '../lib/Scanner';
 import Component from '../lib/Component';
 
-class UserDashboard extends Component {
+class Scanner extends Component {
   constructor() {
     super({
-      name: 'Dashboard',
+      name: 'Scanner',
       model: {
-        locations: null,
+        camera: null,
       },
-      routerPath: '/userdashboard',
+      routerPath: '/scanner',
     });
+    this.scannerLoaded = false;
   }
 
   render() {
@@ -26,17 +28,20 @@ class UserDashboard extends Component {
     // header
     container.insertAdjacentHTML('beforeend', Elements.createHeader({
       size: 1,
-      title: 'Not checked in',
-      subtitle: 'You\'re currently not checked in',
+      title: 'Scan QR-code',
+      subtitle: 'Scanning the QR-code will check you in',
     }));
 
     const main = document.createElement('main');
-    main.classList.add('left');
 
-    main.insertAdjacentHTML('beforeend', Elements.subsubtitle({ textContent: 'Corona proof locations' }));
-    main.insertAdjacentHTML('beforeend', Elements.subsubtitle({ textContent: 'Actions' }));
-    main.insertAdjacentHTML('beforeend', Elements.actionBtn({ textContent: 'Check in', href: '/scanner' }));
-    main.insertAdjacentHTML('beforeend', Elements.actionBtn({ textContent: 'History', href: '#' }));
+    const reader = document.createElement('div');
+    reader.setAttribute('id', 'reader');
+
+    main.appendChild(reader);
+    reader.addEventListener('load', Scannerlib.scanner());
+    const text = document.createElement('p');
+    text.id = 'text';
+    main.appendChild(text);
 
     main.insertAdjacentHTML('beforeend', Elements.navigation({ active: 'home' }));
 
@@ -47,4 +52,4 @@ class UserDashboard extends Component {
   }
 }
 
-export default UserDashboard;
+export default Scanner;

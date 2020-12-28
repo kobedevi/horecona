@@ -4,6 +4,7 @@ import RegisterComponent from './RegisterComponent';
 import ProfileInfoComponent from './ProfileInfoComponent';
 import BusinessInfoComponent from './BusinessInfoComponent';
 import UserDashboard from './UserDashboard';
+import Scanner from './Scanner';
 import TestComponent from './TestComponent';
 
 export {
@@ -13,5 +14,6 @@ export {
   TestComponent,
   ProfileInfoComponent,
   BusinessInfoComponent,
+  Scanner,
   UserDashboard,
 };

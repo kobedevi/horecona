@@ -1,0 +1,16 @@
+#reader {
+  border-radius: 25px ;
+  width: 100%;
+  height: calc(100% - 128px);
+  background-color: black;
+
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  
+  video{
+    border-radius: 25px !important;
+    // min-height: 500px;
+    height: 100%;
+  }
+}

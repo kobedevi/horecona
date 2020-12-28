@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "parcel build src/index.html --out-dir build"
   },
-  "browserslist":[
+  "browserslist": [
     "last 1 Chrome version"
   ],
   "repository": {
@@ -30,11 +30,12 @@
     "sass": "^1.29.0"
   },
   "dependencies": {
-    "navigo": "^7.1.2",
     "express-handlebars": "^5.2.0",
     "firebase": "^8.2.1",
     "handlebars": "^4.7.6",
+    "html5-qrcode": "^1.2.4",
     "lib": "^4.3.0",
+    "navigo": "^7.1.2",
     "regenerator-runtime": "^0.13.7"
   }
 }

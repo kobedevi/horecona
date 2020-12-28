@@ -564,6 +564,20 @@ header svg {
   left: calc(50% - 3px);
 }
 
+#reader {
+  border-radius: 25px;
+  width: 100%;
+  height: calc(100% - 128px);
+  background-color: black;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+}
+#reader video {
+  border-radius: 25px !important;
+  height: 100%;
+}
+
 .action {
   height: 60px;
   width: calc(100% - 32px);
