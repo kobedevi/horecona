@@ -573,6 +573,7 @@ header svg {
   position: absolute !important;
   top: 0;
   left: 0;
+  transform: scaleX(-1);
 }
 #reader video {
   border-radius: 25px !important;

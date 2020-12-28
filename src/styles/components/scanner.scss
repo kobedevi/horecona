@@ -7,6 +7,8 @@
   position: absolute !important;
   top: 0;
   left: 0;
+  // mirror camera
+  transform: scaleX(-1);
   
   video{
     border-radius: 25px !important;
