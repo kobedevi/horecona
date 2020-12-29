@@ -13,11 +13,11 @@ class ProfileInfoComponent extends Component {
     super({
       name: 'ProfileInfo',
       model: {
-        profileinfo: null,
+        profileInfo: null,
       },
       routerPath: '/profileInfo',
     });
-    this.user = null;
+    this.userLoaded = false;
   }
 
   async saveData() {
@@ -29,11 +29,25 @@ class ProfileInfoComponent extends Component {
       });
   }
 
+  async getUserData() {
+    if (!this.userLoaded) {
+      const tempUser = new User();
+      await tempUser.getThisUser()
+        .then((data) => {
+          this.model.profileInfo = data;
+          this.userLoaded = true;
+        });
+    }
+  }
+
   render() {
-    // create a container
-    let user = localStorage.getItem('user');
-    user = JSON.parse(user);
-    if (user.type === 'Business') window.location.replace('/businessInfo');
+    if (!this.model.profileInfo) {
+      this.getUserData();
+    } else {
+      console.log(this.model.profileInfo);
+      if (this.model.profileInfo.type === 'Business') window.location.replace('/businessInfo');
+    }
+    this.getUserData();
     const container = document.createElement('section');
     container.classList.add('pageContainer');
 

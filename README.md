@@ -4,8 +4,8 @@
 This was created by Devillé Kobe!
 
 ### Where did you leave off?
-- filter options for available businesses DONE
-- save business info DONE
-- build dashboard ui
-- remove localstorage type, and use rerender -> localstorage can be exploited
+- business dashboard (basics done)
+- user qr code opvangen 
+- qr code generaten
+- replace type in localstorage with firbase type
 - firebase #9 10:50

@@ -4,6 +4,9 @@
 
 import 'regenerator-runtime/runtime';
 
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
 import Elements from '../lib/Elements';
 import Scannerlib from '../lib/Scanner';
 import Component from '../lib/Component';
@@ -13,11 +16,41 @@ class Scanner extends Component {
     super({
       name: 'Scanner',
       model: {
-        camera: null,
+        qrmessage: null,
       },
       routerPath: '/scanner',
     });
     this.scannerLoaded = false;
+  }
+
+  async scannerData(main) {
+    await Scannerlib.scanner()
+      .then(async (message) => {
+        await this.getCorrectBusiness(message);
+        const textContainer = document.createElement('div');
+        textContainer.id = 'text';
+        const text = document.createElement('h3');
+        // check firebase for business
+        text.innerHTML = `You scanned ${message},<br> is this correct?`;
+        textContainer.appendChild(text);
+        main.appendChild(textContainer);
+        await this.getCorrectBusiness();
+      });
+  }
+
+  async getCorrectBusiness(name) {
+    const db = firebase.firestore();
+    await db.collection('registeredBusinesses').where('name', '==', name).get()
+      .then(async (data) => {
+        if (data.docs[0] === undefined) {
+          // nog opvangen en opnieuw laten scannen
+          console.log('bestaat niet');
+        } else {
+          // return business id
+          return data.docs[0].id;
+        }
+        console.log(data);
+      });
   }
 
   render() {
@@ -38,10 +71,11 @@ class Scanner extends Component {
     reader.setAttribute('id', 'reader');
 
     main.appendChild(reader);
-    reader.addEventListener('load', Scannerlib.scanner());
-    const text = document.createElement('p');
-    text.id = 'text';
-    main.appendChild(text);
+    if (!this.model.qrmessage) {
+      this.scannerData(main);
+    } else {
+      console.log(this.model.qrmessage);
+    }
 
     main.insertAdjacentHTML('beforeend', Elements.navigation({ active: 'home' }));
 

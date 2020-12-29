@@ -573,10 +573,18 @@ header svg {
   position: absolute !important;
   top: 0;
   left: 0;
+  overflow: hidden;
   transform: scaleX(-1);
 }
 #reader video {
   border-radius: 25px !important;
+}
+
+#text {
+  position: absolute;
+  top: calc(50% - 32px);
+  transform: translateY(-50%);
+  text-align: center;
 }
 
 .action {

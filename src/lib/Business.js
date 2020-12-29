@@ -48,7 +48,7 @@ class Business {
           // add a filter for businessowners to redirect to their page
             .then(() => window.location.replace('/profileInfo'));
         } else {
-          window.location.replace('/tester');
+          window.location.replace('/dashboard');
         }
       });
   }
@@ -72,7 +72,7 @@ class Business {
           .then(async () => {
             await db.collection('registeredBusinesses').add({ name: infoData.Business });
           })
-          .then(() => window.location.replace('/tester'));
+          .then(() => window.location.replace('/dashboard'));
       });
   }
 }
