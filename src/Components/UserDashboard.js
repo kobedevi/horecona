@@ -22,12 +22,12 @@ class UserDashboard extends Component {
   }
 
   async getUserData() {
-    if (!this.userLoaded) {
+    if (!this.typeLoaded) {
       const tempUser = new User();
       await tempUser.getThisUser2()
         .then((data) => {
           this.model.profileInfo = data;
-          this.userLoaded = true;
+          this.typeLoaded = true;
         });
     }
   }
@@ -80,10 +80,11 @@ class UserDashboard extends Component {
     // create a container
     const container = document.createElement('section');
     container.classList.add('pageContainer');
+    console.log(this.model.profileInfo);
 
     if (!this.model.profileInfo) {
       this.getUserData();
-    } else if (this.model.profileInfo.type === 'User') {
+    } else if (this.model.profileInfo.type === 'user') {
       this.userDashboard(container);
     } else if (this.model.profileInfo.type === 'Business') {
       this.businessDashboard(container);

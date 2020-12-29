@@ -68,7 +68,7 @@ class User {
           // add a filter for businessowners to redirect to their page
             .then(() => window.location.replace('/profileInfo'));
         } else {
-          window.location.replace('/tester');
+          window.location.replace('/dashboard');
         }
       });
   }
@@ -87,7 +87,7 @@ class User {
           phoneNumber: formData.get('phone'),
         };
         await db.collection('users').doc(docID).collection('info').add(infoData)
-          .then(() => window.location.replace('/tester'));
+          .then(() => window.location.replace('/dashboard'));
       });
   }
 }
