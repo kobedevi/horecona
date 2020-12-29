@@ -66,7 +66,7 @@ class UserDashboard extends Component {
     main.classList.add('left');
 
     main.insertAdjacentHTML('beforeend', Elements.subsubtitle({ textContent: 'Actions' }));
-    main.insertAdjacentHTML('beforeend', Elements.actionBtn({ textContent: 'Generate QR-code', href: '#' }));
+    main.insertAdjacentHTML('beforeend', Elements.actionBtn({ textContent: 'Generate QR-code', href: '/generate' }));
     main.insertAdjacentHTML('beforeend', Elements.actionBtn({ textContent: 'Active users', href: '#' }));
     main.insertAdjacentHTML('beforeend', Elements.actionBtn({ textContent: 'History', href: '#' }));
 

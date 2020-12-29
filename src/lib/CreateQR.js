@@ -10,7 +10,7 @@ const generator = {
     const qrCode = new QRCodeStyling({
       width: 250,
       height: 250,
-      data: input,
+      data: `${window.location.protocol}//${window.location.host}/${input}`,
       image: appIcon,
       dotsOptions: {
         color: '#7C5AF3',
