@@ -26,27 +26,27 @@ class Scanner extends Component {
   async scannerData(main) {
     await Scannerlib.scanner()
       .then(async (message) => {
-        await this.getCorrectBusiness(message);
-        const textContainer = document.createElement('div');
-        textContainer.id = 'text';
-        const text = document.createElement('h3');
-        // check firebase for business
-        text.innerHTML = `You scanned ${message},<br> is this correct?`;
-        textContainer.appendChild(text);
-        main.appendChild(textContainer);
-        await this.getCorrectBusiness();
+        await this.getCorrectBusiness(main, message);
       });
   }
 
-  async getCorrectBusiness(name) {
+  async getCorrectBusiness(main, name) {
+    const textContainer = document.createElement('div');
+    textContainer.id = 'text';
+    const text = document.createElement('h3');
+    // check firebase for business
+    textContainer.appendChild(text);
+    main.appendChild(textContainer);
     const db = firebase.firestore();
     await db.collection('registeredBusinesses').where('name', '==', name).get()
       .then(async (data) => {
         if (data.docs[0] === undefined) {
+          text.innerHTML = 'Woops, that didn\'t work<br/> Want to try again?';
           // nog opvangen en opnieuw laten scannen
           console.log('bestaat niet');
         } else {
           // return business id
+          text.innerHTML = `You scanned ${name},<br> is that correct?`;
           return data.docs[0].id;
         }
         console.log(data);

@@ -575,7 +575,6 @@ header svg {
   top: 0;
   left: 0;
   overflow: hidden;
-  transform: scaleX(-1);
 }
 #reader video {
   border-radius: 25px !important;
@@ -586,6 +585,10 @@ header svg {
   top: calc(50% - 32px);
   transform: translateY(-50%);
   text-align: center;
+}
+
+#qrcode {
+  margin-top: 64px;
 }
 
 .action {

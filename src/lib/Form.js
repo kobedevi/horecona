@@ -66,7 +66,7 @@ class Form extends Component {
     try {
       await firebase.auth()
         .signInWithEmailAndPassword(email, password);
-      window.location.replace('/tester');
+      window.location.replace('/dashboard');
     } catch (err) {
       this.showError(err);
     }
