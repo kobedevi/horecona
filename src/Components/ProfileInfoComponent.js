@@ -25,7 +25,7 @@ class ProfileInfoComponent extends Component {
     const tempUser = new User();
     await tempUser.getThisUser()
       .then(() => {
-        tempUser.aditionalInfo(formData);
+        tempUser.additionalInfo(formData);
       });
   }
 
