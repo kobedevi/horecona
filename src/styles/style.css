@@ -442,6 +442,7 @@ header .header__h2 {
   display: block;
   margin-top: 8px;
   font-family: FuturaLight;
+  text-align: left;
 }
 
 .row {

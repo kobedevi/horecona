@@ -5,6 +5,7 @@ import ProfileInfoComponent from './ProfileInfoComponent';
 import BusinessInfoComponent from './BusinessInfoComponent';
 import UserDashboard from './UserDashboard';
 import Scanner from './Scanner';
+import Generator from './Generator';
 import TestComponent from './TestComponent';
 
 export {
@@ -15,5 +16,6 @@ export {
   ProfileInfoComponent,
   BusinessInfoComponent,
   Scanner,
+  Generator,
   UserDashboard,
 };

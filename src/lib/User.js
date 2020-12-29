@@ -16,6 +16,21 @@ class User {
     // promise might need to be refactored? safer to keep resolved now
     return new Promise((resolve, reject) => {
       try {
+        firebase.auth().onAuthStateChanged((user) => {
+          this.user = user;
+          resolve(user);
+        });
+        // check array of possible answers and add score if correct
+      } catch (err) {
+        reject(err);
+      }
+    });
+  }
+
+  async getThisUser2() {
+    // promise might need to be refactored? safer to keep resolved now
+    return new Promise((resolve, reject) => {
+      try {
         firebase.auth().onAuthStateChanged(async (user) => {
           await firebase.firestore().collection('users').where('uid', '==', user.uid).get()
             .then((data) => {

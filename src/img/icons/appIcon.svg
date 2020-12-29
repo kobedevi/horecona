@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 154 155" style="enable-background:new 0 0 154 155;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#Rectangle_13_1_);}
+	.st1{fill:#FFFFFF;}
+	.st2{font-family:'FuturaPT-Demi';}
+	.st3{font-size:49px;}
+</style>
+<radialGradient id="Rectangle_13_1_" cx="-879.2708" cy="618.278" r="0.842" gradientTransform="matrix(-117.964 -99.022 -88.242 105.028 -49113.7578 -151947.5625)" gradientUnits="userSpaceOnUse">
+	<stop  offset="0" style="stop-color:#E37AF6"/>
+	<stop  offset="0.209" style="stop-color:#D575F6"/>
+	<stop  offset="0.828" style="stop-color:#A161F4"/>
+	<stop  offset="1" style="stop-color:#7C5AF3"/>
+</radialGradient>
+<path id="Rectangle_13" class="st0" d="M35.3,0.5h84c19.3,0,35,15.7,35,35v84c0,19.3-15.7,35-35,35h-84c-19.3,0-35-15.7-35-35v-84
+	C0.3,16.2,16,0.5,35.3,0.5z"/>
+<g transform="matrix(1, 0, 0, 1, 0, 0)">
+	<text transform="matrix(1 0 0 1 28.308 73.5128)" class="st1 st2 st3">Hore</text>
+	<text transform="matrix(1 0 0 1 28.308 114.5128)" class="st1 st2 st3">cona</text>
+</g>
+</svg>
