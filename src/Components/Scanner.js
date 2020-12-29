@@ -1,6 +1,6 @@
 /*
-* register component
-*/
+ * register component
+ */
 
 import 'regenerator-runtime/runtime';
 
@@ -38,15 +38,38 @@ class Scanner extends Component {
     textContainer.appendChild(text);
     main.appendChild(textContainer);
     const db = firebase.firestore();
+    console.log(name);
     await db.collection('registeredBusinesses').where('name', '==', name).get()
       .then(async (data) => {
+        // if no registeredBusiness is found, let the user retry
         if (data.docs[0] === undefined) {
-          text.innerHTML = 'Woops, that didn\'t work<br/> Want to try again?';
-          // nog opvangen en opnieuw laten scannen
-          console.log('bestaat niet');
+          text.innerHTML = 'Woops, that didn\'t work...';
+          textContainer.appendChild(Elements.submitButton({
+            textContent: 'Try again',
+            onClick: () => {
+              window.location.reload();
+            },
+            classes: ['small_gradient_button'],
+          }));
         } else {
-          // return business id
           text.innerHTML = `You scanned ${name},<br> is that correct?`;
+          const row = document.createElement('div');
+          row.classList.add('row');
+          textContainer.appendChild(row);
+          row.appendChild(Elements.submitButton({
+            textContent: 'Check-in',
+            onClick: () => {
+
+            },
+            classes: ['small_gradient_button', 'col-6'],
+          }));
+          row.appendChild(Elements.submitButton({
+            textContent: 'cancel',
+            onClick: () => {
+              window.location.replace('/dashboard');
+            },
+            classes: ['small_gradient_button', 'outline', 'col-6'],
+          }));
           return data.docs[0].id;
         }
         console.log(data);
@@ -77,7 +100,9 @@ class Scanner extends Component {
       console.log(this.model.qrmessage);
     }
 
-    main.insertAdjacentHTML('beforeend', Elements.navigation({ active: 'home' }));
+    main.insertAdjacentHTML('beforeend', Elements.navigation({
+      active: 'home',
+    }));
 
     container.insertAdjacentHTML('beforeend', '<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>');
     container.appendChild(main);

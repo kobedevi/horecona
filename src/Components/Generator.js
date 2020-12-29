@@ -63,7 +63,6 @@ class Generate extends Component {
     } else {
       console.log(this.model.business);
       main.appendChild(div);
-      console.log(`${window.location.protocol}//${window.location.host}/${this.model.business.name}`);
       QRCreator.qr(div, this.model.business.name);
       const businessName = document.createElement('h1');
       businessName.innerHTML = this.model.business.name;

@@ -119,7 +119,7 @@ const Elements = {
     }
     return button;
   },
-  navigation({ active = null, home = '/userdashboard', profile = '/userdashboard' }) {
+  navigation({ active = null, home = '/dashboard', profile = '/dashboard' }) {
     let nav;
     if (active === 'home') {
       const classData = {

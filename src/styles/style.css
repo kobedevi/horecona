@@ -582,6 +582,7 @@ header svg {
 
 #text {
   position: absolute;
+  width: calc(100% - 24px);
   top: calc(50% - 32px);
   transform: translateY(-50%);
   text-align: center;
@@ -647,7 +648,7 @@ header svg {
   color: #2C384A;
 }
 
-form .small_gradient_button {
+form .small_gradient_button, #text .small_gradient_button {
   position: relative;
   bottom: unset;
   flex-grow: 1;

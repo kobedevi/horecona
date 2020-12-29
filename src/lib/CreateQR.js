@@ -11,14 +11,16 @@ const generator = {
       width: 250,
       height: 250,
       // if need more data, use objects
-      data: JSON.stringify(input),
+      data: input,
       image: appIcon,
       dotsOptions: {
-        color: '#7c5af3',
+        // color: '#7c5af3',
+        color: 'black',
         type: 'square',
       },
       backgroundOptions: {
-        color: '#231F36',
+        // color: '#231F36',
+        color: 'white',
       },
       imageOptions: {
         crossOrigin: 'anonymous',
