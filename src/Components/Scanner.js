@@ -10,17 +10,19 @@ import 'firebase/firestore';
 import Elements from '../lib/Elements';
 import Scannerlib from '../lib/Scanner';
 import Component from '../lib/Component';
+import User from '../lib/User';
 
 class Scanner extends Component {
   constructor() {
     super({
       name: 'Scanner',
       model: {
-        qrmessage: null,
+        profileInfo: null,
       },
       routerPath: '/scanner',
     });
     this.scannerLoaded = false;
+    this.userLoaded = false;
   }
 
   async scannerData(main) {
@@ -52,14 +54,21 @@ class Scanner extends Component {
             classes: ['small_gradient_button'],
           }));
         } else {
-          text.innerHTML = `You scanned ${name},<br> is that correct?`;
+          text.innerHTML = `You scanned "${name}",<br> is that correct?`;
           const row = document.createElement('div');
           row.classList.add('row');
           textContainer.appendChild(row);
           row.appendChild(Elements.submitButton({
             textContent: 'Check-in',
-            onClick: () => {
-
+            onClick: async () => {
+              if (!this.userLoaded) {
+                const tempUser = new User();
+                await tempUser.getThisUser2()
+                  .then(async (userData) => {
+                    console.log(userData);
+                    await tempUser.checkin(userData, name);
+                  });
+              }
             },
             classes: ['small_gradient_button', 'col-6'],
           }));
@@ -80,7 +89,6 @@ class Scanner extends Component {
     // create a container
     const container = document.createElement('section');
     container.classList.add('pageContainer');
-
     // header
     container.insertAdjacentHTML('beforeend', Elements.createHeader({
       size: 1,

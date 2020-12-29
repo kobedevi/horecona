@@ -10,6 +10,7 @@ class App {
   constructor(parent) {
     this.parent = parent;
     this.components = [];
+    this.user = null;
     initFirebase();
   }
 

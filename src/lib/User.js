@@ -35,6 +35,7 @@ class User {
           await firebase.firestore().collection('users').where('uid', '==', user.uid).get()
             .then((data) => {
               const relevant = {
+                docid: data.docs[0].id,
                 user: data.docs[0].data().uid,
                 type: data.docs[0].data().type,
               };
@@ -88,6 +89,37 @@ class User {
         };
         await db.collection('users').doc(docID).collection('info').add(infoData)
           .then(() => window.location.replace('/dashboard'));
+      });
+  }
+
+  // async isCheckedIn() {
+
+  // }
+
+  async checkin(userData, businessName) {
+    const db = firebase.firestore();
+    const {
+      serverTimestamp,
+    } = firebase.firestore.FieldValue;
+
+    const checkinInfo = {
+      name: businessName,
+      active: true,
+    };
+    checkinInfo.createdOn = serverTimestamp();
+
+    await db.collection('users').doc(userData.docid).collection('checkin').add(checkinInfo);
+    // eslint-disable-next-line max-len
+    delete checkinInfo.name;
+    checkinInfo.user = userData.user;
+    await db.collection('registeredBusinesses').where('name', '==', businessName).get()
+      .then(async (docRef) => {
+        console.log(docRef.docs[0].id);
+        console.log(checkinInfo);
+        await db.collection('registeredBusinesses').doc(docRef.docs[0].id).collection('checkins').add(checkinInfo)
+          .then(() => {
+            window.location.replace('dashboard');
+          });
       });
   }
 }
