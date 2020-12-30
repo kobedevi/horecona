@@ -88,7 +88,7 @@ class UserDashboard extends Component {
       });
       main.append(button);
     }
-    main.insertAdjacentHTML('beforeend', Elements.actionBtn({ textContent: 'History', href: '#' }));
+    main.insertAdjacentHTML('beforeend', Elements.actionBtn({ textContent: 'History', href: '/history' }));
 
     main.insertAdjacentHTML('beforeend', Elements.navigation({ active: 'home' }));
 

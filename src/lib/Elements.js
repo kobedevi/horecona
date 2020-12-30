@@ -6,6 +6,7 @@ import profileInfoForm from '../views/templates/profileInfoForm';
 import businessInfoForm from '../views/templates/businessInfoForm';
 import actionBtn from '../views/templates/actionBtn';
 import navigation from '../views/templates/navigation';
+import history from '../views/templates/history';
 
 const Handlebars = require('handlebars');
 
@@ -150,6 +151,12 @@ const Elements = {
       nav = template({ classData });
     }
     return nav;
+  },
+
+  history({ place = 'placeholder', active = false }) {
+    const template = Handlebars.compile(history);
+    const historyItem = template({ place, active });
+    return historyItem;
   },
 };
 

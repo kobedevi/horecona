@@ -163,6 +163,17 @@ class User {
           });
       });
   }
+
+  async history(userData) {
+    return new Promise((resolve) => {
+      const db = firebase.firestore();
+      db.collection('users').doc(userData.docid).collection('checkin').orderBy('createdOn', 'desc')
+        .get()
+        .then((checkins) => {
+          resolve(checkins);
+        });
+    });
+  }
 }
 
 export default User;

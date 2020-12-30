@@ -18,6 +18,7 @@
 @use "./layout/navigation";
 
 // components
+@use "./components/history.scss";
 @use "./components/scanner.scss";
 @use "./components/actions.scss";
 @use "./components/buttons.scss";

@@ -6,6 +6,7 @@ import BusinessInfoComponent from './BusinessInfoComponent';
 import UserDashboard from './UserDashboard';
 import Scanner from './Scanner';
 import Generator from './Generator';
+import History from './History';
 import TestComponent from './TestComponent';
 
 export {
@@ -18,4 +19,5 @@ export {
   Scanner,
   Generator,
   UserDashboard,
+  History,
 };

@@ -1,0 +1,28 @@
+@use "../abstracts/variables" as vars;
+
+.history-item.action{
+    justify-content: space-between;
+    text-align: left;
+    padding: 8px 16px;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    &:not(:first-of-type){
+        margin-top: 16px;
+    }
+    p{
+        margin: 0;
+    }
+    span{
+        background-color: rgba($color: vars.$main-solid-color, $alpha: 0.25);
+        padding: 4px 8px;
+        border-radius: 50px;
+    }
+}
+
+.history-container{
+    margin: 32px 0 112px;
+    width: 100%;
+    flex-grow: 1;
+    overflow-y: auto;
+}

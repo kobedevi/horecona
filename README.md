@@ -5,6 +5,7 @@ This was created by Devillé Kobe!
 
 ### Where did you leave off?
 - dashboard (basics done) 
+- dashboard businesss naam/ manager inladen
 - check in action DONE
 - check if user checked in/out DONE
 - check out action DONE

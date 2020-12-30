@@ -1,6 +1,7 @@
 @use "../abstracts/variables" as vars;
 
 .navigation{
+    z-index: 5;
     width: 100%;
     display: flex;
     flex-direction: row;

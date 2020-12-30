@@ -372,13 +372,15 @@ html {
 }
 
 main {
+  width: 100%;
   display: flex;
   position: relative;
-  flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   flex-grow: 1;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 form {
@@ -495,6 +497,7 @@ header .header__h2 {
 header {
   display: flex;
   position: relative;
+  width: 100%;
 }
 header div {
   padding: 15px;
@@ -541,6 +544,7 @@ header svg {
 }
 
 .navigation {
+  z-index: 5;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -563,6 +567,33 @@ header svg {
   background-color: #7C5AF3;
   bottom: -16px;
   left: calc(50% - 3px);
+}
+
+.history-item.action {
+  justify-content: space-between;
+  text-align: left;
+  padding: 8px 16px;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+}
+.history-item.action:not(:first-of-type) {
+  margin-top: 16px;
+}
+.history-item.action p {
+  margin: 0;
+}
+.history-item.action span {
+  background-color: rgba(124, 90, 243, 0.25);
+  padding: 4px 8px;
+  border-radius: 50px;
+}
+
+.history-container {
+  margin: 32px 0 112px;
+  width: 100%;
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
 #reader {
