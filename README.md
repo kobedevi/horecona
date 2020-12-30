@@ -12,3 +12,4 @@ This was created by Devillé Kobe!
 - qr code generaten DONE
 - register hertesten door getthisuser2 DONE
 - firebase #9 10:50
+- dashboard not loading on login...

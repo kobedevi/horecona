@@ -18,16 +18,17 @@ class UserDashboard extends Component {
       },
       routerPath: '/dashboard',
     });
-    this.typeLoaded = false;
+    this.userLoaded = false;
   }
 
   async getUserData() {
-    if (!this.typeLoaded) {
+    if (!this.userLoaded) {
       const tempUser = new User();
       await tempUser.getThisUser2()
         .then((data) => {
           this.model.profileInfo = data;
-          this.typeLoaded = true;
+          console.log(data);
+          this.userLoaded = true;
         });
     }
   }
@@ -83,6 +84,7 @@ class UserDashboard extends Component {
     console.log(this.model.profileInfo);
 
     if (!this.model.profileInfo) {
+      console.log(this.model.profileInfo);
       this.getUserData();
     } else if (this.model.profileInfo.type === 'user') {
       this.userDashboard(container);

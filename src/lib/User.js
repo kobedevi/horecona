@@ -111,7 +111,7 @@ class User {
     await db.collection('users').doc(userData.docid).collection('checkin').add(checkinInfo);
     // eslint-disable-next-line max-len
     delete checkinInfo.name;
-    checkinInfo.user = userData.user;
+    checkinInfo.uid = userData.user;
     await db.collection('registeredBusinesses').where('name', '==', businessName).get()
       .then(async (docRef) => {
         console.log(docRef.docs[0].id);
