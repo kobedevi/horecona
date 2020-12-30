@@ -21,7 +21,6 @@ class Scanner extends Component {
       },
       routerPath: '/scanner',
     });
-    this.scannerLoaded = false;
     this.userLoaded = false;
   }
 
@@ -54,6 +53,7 @@ class Scanner extends Component {
             classes: ['small_gradient_button'],
           }));
         } else {
+          // otherwise show scanned business
           text.innerHTML = `You scanned "${name}",<br> is that correct?`;
           const row = document.createElement('div');
           row.classList.add('row');
@@ -102,11 +102,7 @@ class Scanner extends Component {
     reader.setAttribute('id', 'reader');
 
     main.appendChild(reader);
-    if (!this.model.qrmessage) {
-      this.scannerData(main);
-    } else {
-      console.log(this.model.qrmessage);
-    }
+    this.scannerData(main);
 
     main.insertAdjacentHTML('beforeend', Elements.navigation({
       active: 'home',

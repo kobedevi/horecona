@@ -92,9 +92,28 @@ class User {
       });
   }
 
-  // async isCheckedIn() {
-
-  // }
+  async getCheckinData(userData) {
+    return new Promise((resolve, reject) => {
+      try {
+        const db = firebase.firestore();
+        // eslint-disable-next-line newline-per-chained-call
+        db.collection('users').doc(userData.docid).collection('checkin').where('active', '==', true).get()
+          .then((checkinData) => {
+            if (checkinData.docs[0] !== undefined) {
+              const resultData = {
+                data: checkinData.docs[0].data(),
+                id: checkinData.docs[0].id,
+              };
+              resolve(resultData);
+            } else {
+              resolve(null);
+            }
+          });
+      } catch (err) {
+        reject(err);
+      }
+    });
+  }
 
   async checkin(userData, businessName) {
     const db = firebase.firestore();
@@ -119,6 +138,28 @@ class User {
         await db.collection('registeredBusinesses').doc(docRef.docs[0].id).collection('checkins').add(checkinInfo)
           .then(() => {
             window.location.replace('dashboard');
+          });
+      });
+  }
+
+  async checkout(userData, businessData) {
+    const db = firebase.firestore();
+    console.log(userData);
+    console.log(businessData);
+
+    // set user checkin active to false
+    await db.collection('users').doc(userData.docid).collection('checkin').doc(businessData.id)
+      .update({ active: false });
+    // get business docid
+    await db.collection('registeredBusinesses').where('name', '==', businessData.data.name).get()
+      .then(async (docRef) => {
+        // get docid of user active
+        // eslint-disable-next-line newline-per-chained-call
+        await db.collection('registeredBusinesses').doc(docRef.docs[0].id).collection('checkins').where('uid', '==', userData.user).get()
+          .then(async (uidDoc) => {
+            await db.collection('registeredBusinesses').doc(docRef.docs[0].id).collection('checkins').doc(uidDoc.docs[0].id)
+              .update({ active: false })
+              .then(() => window.replace('/dashboard'));
           });
       });
   }

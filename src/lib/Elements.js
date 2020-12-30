@@ -36,6 +36,7 @@ const Elements = {
     return `<h3 class="textMargin">${textContent}</h3>`;
   },
 
+  // eslint-disable-next-line consistent-return
   actionBtn({ textContent = 'Action description', icon = 'checkin', href = '#' }) {
     const template = Handlebars.compile(actionBtn);
     if (icon === 'checkin') return template({ textContent, icon, href });

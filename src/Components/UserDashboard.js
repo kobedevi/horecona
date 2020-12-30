@@ -15,6 +15,7 @@ class UserDashboard extends Component {
       model: {
         locations: null,
         profileInfo: null,
+        checkin: null,
       },
       routerPath: '/dashboard',
     });
@@ -25,28 +26,68 @@ class UserDashboard extends Component {
     if (!this.userLoaded) {
       const tempUser = new User();
       await tempUser.getThisUser2()
-        .then((data) => {
-          this.model.profileInfo = data;
-          console.log(data);
+        .then(async (data) => {
+          await tempUser.getCheckinData(data)
+            .then((checkinData) => {
+              this.model.profileInfo = data;
+              this.model.checkin = checkinData;
+            });
+          // this.model.profileInfo = data;
           this.userLoaded = true;
         });
     }
   }
 
+  async checkout() {
+    const tempUser = new User();
+    await tempUser.checkout(this.model.profileInfo, this.model.checkin);
+  }
+
   userDashboard(container) {
     // header
-    container.insertAdjacentHTML('beforeend', Elements.createHeader({
-      size: 1,
-      title: 'Not checked in',
-      subtitle: 'You\'re currently not checked in',
-    }));
+    if (!this.model.checkin) {
+      container.insertAdjacentHTML('beforeend', Elements.createHeader({
+        size: 1,
+        title: 'Not checked in',
+        subtitle: 'You\'re currently not checked in',
+      }));
+    } else {
+      container.insertAdjacentHTML('beforeend', Elements.createHeader({
+        size: 1,
+        title: 'Checked in',
+        subtitle: `You\'re checked in at ${this.model.checkin.data.name}`,
+      }));
+    }
 
     const main = document.createElement('main');
     main.classList.add('left');
 
     main.insertAdjacentHTML('beforeend', Elements.subsubtitle({ textContent: 'Corona proof locations' }));
     main.insertAdjacentHTML('beforeend', Elements.subsubtitle({ textContent: 'Actions' }));
-    main.insertAdjacentHTML('beforeend', Elements.actionBtn({ textContent: 'Check in', href: '/scanner' }));
+    // if user is not checked in checked in show check in button
+    if (this.model.checkin === null) {
+      main.insertAdjacentHTML('beforeend', Elements.actionBtn({ textContent: 'Check in', href: '/scanner' }));
+    } else {
+      // else check out button
+      // Handlebars is shit with this so I create it once here...
+      const button = document.createElement('a');
+      button.href = '#';
+      button.classList.add('action', 'textMargin');
+      const div = document.createElement('div');
+      button.appendChild(div);
+      const img = document.createElement('img');
+      img.src = 'https://pbs.floatplane.com/icons/favicon-32x32.png';
+      img.alt = 'icon';
+      div.appendChild(img);
+      const text = document.createElement('p');
+      text.innerHTML = 'Check out';
+      div.appendChild(text);
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.checkout();
+      });
+      main.append(button);
+    }
     main.insertAdjacentHTML('beforeend', Elements.actionBtn({ textContent: 'History', href: '#' }));
 
     main.insertAdjacentHTML('beforeend', Elements.navigation({ active: 'home' }));
@@ -81,10 +122,8 @@ class UserDashboard extends Component {
     // create a container
     const container = document.createElement('section');
     container.classList.add('pageContainer');
-    console.log(this.model.profileInfo);
 
     if (!this.model.profileInfo) {
-      console.log(this.model.profileInfo);
       this.getUserData();
     } else if (this.model.profileInfo.type === 'user') {
       this.userDashboard(container);
