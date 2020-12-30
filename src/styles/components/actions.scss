@@ -11,6 +11,9 @@
     background: vars.$button-color;
     border-radius: 27px;
     text-decoration: none;
+    &:not(:first-of-type){
+        margin-top: 16px;
+    }
     @extend %dropshadow;
 
     div{

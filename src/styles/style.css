@@ -632,6 +632,9 @@ header svg {
   border-radius: 27px;
   text-decoration: none;
 }
+.action:not(:first-of-type) {
+  margin-top: 16px;
+}
 .action div {
   display: flex;
   flex-direction: row;
