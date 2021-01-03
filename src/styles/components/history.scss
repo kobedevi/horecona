@@ -21,8 +21,20 @@
 }
 
 .history-container{
+    // display: flex;
     margin: 32px 0 112px;
     width: 100%;
     flex-grow: 1;
     overflow-y: auto;
+    .history-data{
+        flex: 1 1 50%;
+        justify-content: flex-start;
+        align-items: flex-start;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        .date{
+            font-size: .8rem;
+        }
+    }
 }

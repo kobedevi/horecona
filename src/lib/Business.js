@@ -102,7 +102,7 @@ class Business {
       });
   }
 
-  async history(businessData) {
+  async history(businessData, dateInput) {
     return new Promise((resolve) => {
       const db = firebase.firestore();
       // get business docid
@@ -111,6 +111,12 @@ class Business {
           db.collection('registeredBusinesses').doc(docRef.docs[0].id).collection('checkins').orderBy('createdOn', 'desc')
             .get()
             .then((checkins) => {
+              // empty old list
+              const oldList = document.getElementById('historyContainer');
+              if (oldList) {
+                oldList.remove();
+              }
+              // select history by date
               resolve(checkins);
             });
         });

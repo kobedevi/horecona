@@ -190,9 +190,9 @@ const Elements = {
     return nav;
   },
 
-  history({ place = 'placeholder', active = false }) {
+  history({ place = 'placeholder', active = false, date = null }) {
     const template = Handlebars.compile(history);
-    const historyItem = template({ place, active });
+    const historyItem = template({ place, date, active });
     return historyItem;
   },
 };

@@ -50,17 +50,21 @@ class UserDashboard extends Component {
     console.log(this.model.profileInfo);
     await new User().history(this.model.profileInfo)
       .then((checkins) => {
-        const historyMainContainer = document.createElement('div');
-        historyMainContainer.classList.add('historyMainContainer');
         const historyContainer = document.createElement('div');
         historyContainer.classList.add('history-container');
 
         container.appendChild(historyContainer);
         checkins.forEach((checkin) => {
-          // show new messages
-          console.log(checkin.data().createdOn.toDate());
+          // convert server timestamp to something usable
+          let masterDate = checkin.data().createdOn.toDate();
+          // slice the bit we actually need
+          masterDate = masterDate.toString().slice(0, 15);
           // eslint-disable-next-line max-len
-          const historyItem = Elements.history({ place: checkin.data().name, active: checkin.data().active });
+          const historyItem = Elements.history({
+            place: checkin.data().name,
+            date: masterDate,
+            active: checkin.data().active,
+          });
           historyContainer.insertAdjacentHTML('beforeend', historyItem);
         });
       });
@@ -72,23 +76,64 @@ class UserDashboard extends Component {
       title: 'History',
       subtitle: 'History of users that checked in here',
     }));
-    const businessInfo = await this.businessInfo();
-    await new Business().history(businessInfo)
-      .then((checkins) => {
-        const historyMainContainer = document.createElement('div');
-        historyMainContainer.classList.add('historyMainContainer');
-        const historyContainer = document.createElement('div');
-        historyContainer.classList.add('history-container');
+    const form = document.createElement('form');
+    form.setAttribute('method', 'POST');
+    form.classList.add('textMargin');
 
-        container.appendChild(historyContainer);
-        checkins.forEach((checkin) => {
-          // show new messages
-          console.log(checkin.data().createdOn.toDate());
-          // eslint-disable-next-line max-len
-          const historyItem = Elements.history({ place: checkin.data().username, active: checkin.data().active });
-          historyContainer.insertAdjacentHTML('beforeend', historyItem);
+    const btn = document.createElement('input');
+    btn.classList.add('small_gradient_button');
+    btn.type = 'submit';
+    btn.value = 'see visitors';
+    const div = document.createElement('div');
+    div.classList.add('together');
+    const input = document.createElement('input');
+    input.type = 'date';
+    input.name = 'filter';
+    input.required = true;
+    const label = document.createElement('label');
+    label.setAttribute('for', 'filter');
+    label.innerHTML = 'Date to filter on<span>*</span>';
+
+    div.append(input);
+    div.append(label);
+    form.append(div);
+    form.append(btn);
+    container.append(form);
+
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const businessInfo = await this.businessInfo();
+      await new Business().history(businessInfo, input.value)
+        .then((checkins) => {
+          const historyContainer = document.createElement('div');
+          historyContainer.id = 'historyContainer';
+          historyContainer.classList.add('history-container');
+
+          container.appendChild(historyContainer);
+          // generate history item
+          checkins.forEach((checkin) => {
+            // convert server timestamp to something usable
+            const masterDate = checkin.data().createdOn.toDate();
+            // slice the bit we actually need
+            const checkDate = masterDate.toString().slice(0, 15);
+
+            // convert user input to usable date
+            let userDate = new Date(input.value);
+            userDate = userDate.toDateString();
+
+            // filter by date, server side is over complicated with server timestamp
+            if (checkDate === userDate) {
+              const showDate = masterDate.toString().slice(4, 24);
+              const historyItem = Elements.history({
+                place: checkin.data().username,
+                date: showDate,
+                active: checkin.data().active,
+              });
+              historyContainer.insertAdjacentHTML('beforeend', historyItem);
+            }
+          });
         });
-      });
+    });
   }
 
   render() {
