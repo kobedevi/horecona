@@ -33,13 +33,18 @@ class User {
       try {
         firebase.auth().onAuthStateChanged(async (user) => {
           await firebase.firestore().collection('users').where('uid', '==', user.uid).get()
-            .then((data) => {
-              const relevant = {
-                docid: data.docs[0].id,
-                user: data.docs[0].data().uid,
-                type: data.docs[0].data().type,
-              };
-              resolve(relevant);
+            .then(async (data) => {
+              await firebase.firestore().collection('users').doc(data.docs[0].id).collection('info')
+                .get()
+                .then((userInfo) => {
+                  const relevant = {
+                    docid: data.docs[0].id,
+                    user: data.docs[0].data().uid,
+                    username: `${userInfo.docs[0].data().firstName} ${userInfo.docs[0].data().surName}`,
+                    type: data.docs[0].data().type,
+                  };
+                  resolve(relevant);
+                });
             });
         });
       } catch (err) {
@@ -126,11 +131,13 @@ class User {
       active: true,
     };
     checkinInfo.createdOn = serverTimestamp();
-
+    // add to users checkins
     await db.collection('users').doc(userData.docid).collection('checkin').add(checkinInfo);
     // eslint-disable-next-line max-len
     delete checkinInfo.name;
     checkinInfo.uid = userData.user;
+    checkinInfo.username = userData.username;
+    // add to business checkins
     await db.collection('registeredBusinesses').where('name', '==', businessName).get()
       .then(async (docRef) => {
         console.log(docRef.docs[0].id);
@@ -159,7 +166,7 @@ class User {
           .then(async (uidDoc) => {
             await db.collection('registeredBusinesses').doc(docRef.docs[0].id).collection('checkins').doc(uidDoc.docs[0].id)
               .update({ active: false })
-              .then(() => window.replace('/dashboard'));
+              .then(() => window.location.replace('/dashboard'));
           });
       });
   }

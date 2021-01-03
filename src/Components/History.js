@@ -4,9 +4,13 @@
 
 import 'regenerator-runtime/runtime';
 
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
 import Elements from '../lib/Elements';
 import Component from '../lib/Component';
 import User from '../lib/User';
+import Business from '../lib/Business';
 
 class UserDashboard extends Component {
   constructor() {
@@ -30,6 +34,13 @@ class UserDashboard extends Component {
     }
   }
 
+  async businessInfo() {
+    const db = firebase.firestore();
+    const query = await db.collection('users').doc(this.model.profileInfo.docid).collection('info').get()
+      .then(async (data) => data.docs[0].data());
+    return query;
+  }
+
   async userHistory(container) {
     container.insertAdjacentHTML('beforeend', Elements.createHeader({
       size: 1,
@@ -44,13 +55,37 @@ class UserDashboard extends Component {
         const historyContainer = document.createElement('div');
         historyContainer.classList.add('history-container');
 
-        // historyMainContainer.appendChild(historyContainer);
         container.appendChild(historyContainer);
         checkins.forEach((checkin) => {
           // show new messages
           console.log(checkin.data().createdOn.toDate());
           // eslint-disable-next-line max-len
           const historyItem = Elements.history({ place: checkin.data().name, active: checkin.data().active });
+          historyContainer.insertAdjacentHTML('beforeend', historyItem);
+        });
+      });
+  }
+
+  async businessHistory(container) {
+    container.insertAdjacentHTML('beforeend', Elements.createHeader({
+      size: 1,
+      title: 'History',
+      subtitle: 'History of users that checked in here',
+    }));
+    const businessInfo = await this.businessInfo();
+    await new Business().history(businessInfo)
+      .then((checkins) => {
+        const historyMainContainer = document.createElement('div');
+        historyMainContainer.classList.add('historyMainContainer');
+        const historyContainer = document.createElement('div');
+        historyContainer.classList.add('history-container');
+
+        container.appendChild(historyContainer);
+        checkins.forEach((checkin) => {
+          // show new messages
+          console.log(checkin.data().createdOn.toDate());
+          // eslint-disable-next-line max-len
+          const historyItem = Elements.history({ place: checkin.data().username, active: checkin.data().active });
           historyContainer.insertAdjacentHTML('beforeend', historyItem);
         });
       });
@@ -70,7 +105,7 @@ class UserDashboard extends Component {
     } else if (this.model.profileInfo.type === 'user') {
       this.userHistory(main);
     } else if (this.model.profileInfo.type === 'Business') {
-      this.businessDashboard(container);
+      this.businessHistory(main);
     }
     container.appendChild(main);
     main.insertAdjacentHTML('beforeend', Elements.navigation({ active: 'home' }));

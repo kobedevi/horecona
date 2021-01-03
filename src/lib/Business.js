@@ -101,6 +101,21 @@ class Business {
           .then(() => window.location.replace('/dashboard'));
       });
   }
+
+  async history(businessData) {
+    return new Promise((resolve) => {
+      const db = firebase.firestore();
+      // get business docid
+      db.collection('registeredBusinesses').where('name', '==', businessData.Business).get()
+        .then((docRef) => {
+          db.collection('registeredBusinesses').doc(docRef.docs[0].id).collection('checkins').orderBy('createdOn', 'desc')
+            .get()
+            .then((checkins) => {
+              resolve(checkins);
+            });
+        });
+    });
+  }
 }
 
 export default Business;
