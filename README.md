@@ -4,7 +4,7 @@
 This was created by Devillé Kobe!
 
 ### Where did you leave off?
-- dashboard (basics done) 
+- dashboard (basics done)  DONE
 - dashboard businesss naam/ manager inladen
 - check in action DONE
 - check if user checked in/out DONE
@@ -14,13 +14,14 @@ This was created by Devillé Kobe!
 - register hertesten door getthisuser2 DONE
 - service workers
 - firebase #9 10:50
+- redirect to login/ dashboard
 
 ### TODO list
 - aanmelden DONE
 - registeren DONE
 	- horeca bezoeker DONE
 	- zaakvoerder DONE
-		- bezoeker:
+		- bezoeker: DONE
 		    - registreert (externe provider/email) DONE
 		    - extra info DONE
 		- zaakvoerder:

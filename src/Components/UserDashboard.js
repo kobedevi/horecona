@@ -4,6 +4,11 @@
 
 import 'regenerator-runtime/runtime';
 
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
+import checkout from '../img/icons/checkout.svg';
+
 import Elements from '../lib/Elements';
 import Component from '../lib/Component';
 import User from '../lib/User';
@@ -43,6 +48,13 @@ class UserDashboard extends Component {
     await tempUser.checkout(this.model.profileInfo, this.model.checkin);
   }
 
+  async businessInfo() {
+    const db = firebase.firestore();
+    const query = await db.collection('users').doc(this.model.profileInfo.docid).collection('info').get()
+      .then(async (data) => data.docs[0].data());
+    return query;
+  }
+
   userDashboard(container) {
     // header
     if (!this.model.checkin) {
@@ -66,7 +78,7 @@ class UserDashboard extends Component {
     main.insertAdjacentHTML('beforeend', Elements.subsubtitle({ textContent: 'Actions' }));
     // if user is not checked in checked in show check in button
     if (this.model.checkin === null) {
-      main.insertAdjacentHTML('beforeend', Elements.actionBtn({ textContent: 'Check in', href: '/scanner' }));
+      main.appendChild(Elements.actionBtn({ textContent: 'Check in', icon: 'checkin', href: '/scanner' }));
     } else {
       // else check out button
       // Handlebars is shit with this so I create it once here...
@@ -76,7 +88,7 @@ class UserDashboard extends Component {
       const div = document.createElement('div');
       button.appendChild(div);
       const img = document.createElement('img');
-      img.src = 'https://pbs.floatplane.com/icons/favicon-32x32.png';
+      img.src = checkout;
       img.alt = 'icon';
       div.appendChild(img);
       const text = document.createElement('p');
@@ -88,7 +100,7 @@ class UserDashboard extends Component {
       });
       main.append(button);
     }
-    main.insertAdjacentHTML('beforeend', Elements.actionBtn({ textContent: 'History', href: '/history' }));
+    main.appendChild(Elements.actionBtn({ textContent: 'History', icon: 'history', href: '/history' }));
 
     main.insertAdjacentHTML('beforeend', Elements.navigation({ active: 'home' }));
 
@@ -96,21 +108,23 @@ class UserDashboard extends Component {
     container.appendChild(main);
   }
 
-  businessDashboard(container) {
+  async businessDashboard(container) {
+    // get business name & manager name
+    const businessInfo = await this.businessInfo();
     // header
     container.insertAdjacentHTML('beforeend', Elements.createHeader({
       size: 1,
-      title: 'BUSINESS',
-      subtitle: 'MANAGER AT NAME BUSINESS',
+      title: businessInfo.Business,
+      subtitle: `${businessInfo.firstName} ${businessInfo.surName}`,
     }));
 
     const main = document.createElement('main');
     main.classList.add('left');
 
     main.insertAdjacentHTML('beforeend', Elements.subsubtitle({ textContent: 'Actions' }));
-    main.insertAdjacentHTML('beforeend', Elements.actionBtn({ textContent: 'Generate QR-code', href: '/generate' }));
-    main.insertAdjacentHTML('beforeend', Elements.actionBtn({ textContent: 'Active users', href: '#' }));
-    main.insertAdjacentHTML('beforeend', Elements.actionBtn({ textContent: 'History', href: '#' }));
+    main.appendChild(Elements.actionBtn({ textContent: 'Generate QR-code', icon: 'generate', href: '/generate' }));
+    main.appendChild(Elements.actionBtn({ textContent: 'Active users', icon: 'users', href: '#' }));
+    main.appendChild(Elements.actionBtn({ textContent: 'History', icon: 'history', href: '#' }));
 
     main.insertAdjacentHTML('beforeend', Elements.navigation({ active: 'home' }));
 

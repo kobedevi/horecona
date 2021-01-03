@@ -4,9 +4,15 @@ import loginForm from '../views/templates/loginForm';
 import registerForm from '../views/templates/registerForm';
 import profileInfoForm from '../views/templates/profileInfoForm';
 import businessInfoForm from '../views/templates/businessInfoForm';
-import actionBtn from '../views/templates/actionBtn';
 import navigation from '../views/templates/navigation';
 import history from '../views/templates/history';
+
+// import all images... didn't know a better solution
+import iconCheckin from '../img/icons/checkin.svg';
+import iconGenerate from '../img/icons/generate.svg';
+import iconUsers from '../img/icons/users.svg';
+import iconHistory from '../img/icons/history.svg';
+import iconLogout from '../img/icons/logout.svg';
 
 const Handlebars = require('handlebars');
 
@@ -37,11 +43,42 @@ const Elements = {
     return `<h3 class="textMargin">${textContent}</h3>`;
   },
 
-  // eslint-disable-next-line consistent-return
   actionBtn({ textContent = 'Action description', icon = 'checkin', href = '#' }) {
-    const template = Handlebars.compile(actionBtn);
-    if (icon === 'checkin') return template({ textContent, icon, href });
-    if (icon === 'logout') return template({ textContent, icon, href });
+    const a = document.createElement('a');
+    a.href = href;
+    a.classList.add('action', 'textMargin');
+    const div = document.createElement('div');
+    const img = document.createElement('img');
+
+    // check which icon to use
+    img.alt = 'icon';
+    switch (icon) {
+      case 'checkin':
+        img.src = iconCheckin;
+        break;
+      case 'generate':
+        img.src = iconGenerate;
+        break;
+      case 'history':
+        img.src = iconHistory;
+        break;
+      case 'users':
+        img.src = iconUsers;
+        break;
+      case 'logout':
+        img.src = iconLogout;
+        break;
+      default:
+        img.alt = 'image not found';
+    }
+
+    const p = document.createElement('p');
+    p.innerHTML = textContent;
+    div.appendChild(img);
+    div.appendChild(p);
+    a.appendChild(div);
+
+    return a;
   },
 
   buttonLink({ textContent = 'This is your button', href = '#', target = '_self' }) {
