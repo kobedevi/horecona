@@ -5,7 +5,7 @@ This was created by Devillé Kobe!
 
 ### Where did you leave off?
 - dashboard (basics done)  DONE
-- dashboard businesss naam/ manager inladen
+- dashboard businesss naam/ manager inladen DONE
 - check in action DONE
 - check if user checked in/out DONE
 - check out action DONE
@@ -37,7 +37,7 @@ This was created by Devillé Kobe!
 		- historiek DONE
 	- zaakvoerder:
 		- lijst van de bezoekers (kunnen uitchecken)
-		- historiek
+		- historiek DONE
 		- aanpassen gegevens
 		- aanmaken unieke QR code DONE
 

@@ -58,7 +58,7 @@ class UserDashboard extends Component {
           // convert server timestamp to something usable
           let masterDate = checkin.data().createdOn.toDate();
           // slice the bit we actually need
-          masterDate = masterDate.toString().slice(0, 15);
+          masterDate = masterDate.toString().slice(0, 21);
           // eslint-disable-next-line max-len
           const historyItem = Elements.history({
             place: checkin.data().name,
@@ -76,6 +76,7 @@ class UserDashboard extends Component {
       title: 'History',
       subtitle: 'History of users that checked in here',
     }));
+    // --- history date selector
     const form = document.createElement('form');
     form.setAttribute('method', 'POST');
     form.classList.add('textMargin');
@@ -99,6 +100,7 @@ class UserDashboard extends Component {
     form.append(div);
     form.append(btn);
     container.append(form);
+    // --- end history date selector
 
     btn.addEventListener('click', async (e) => {
       e.preventDefault();
