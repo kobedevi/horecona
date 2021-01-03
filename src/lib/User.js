@@ -40,9 +40,11 @@ class User {
                   const relevant = {
                     docid: data.docs[0].id,
                     user: data.docs[0].data().uid,
-                    username: `${userInfo.docs[0].data().firstName} ${userInfo.docs[0].data().surName}`,
                     type: data.docs[0].data().type,
                   };
+                  if (!(userInfo.docs[0] === undefined)) {
+                    relevant.username = `${userInfo.docs[0].data().firstName} ${userInfo.docs[0].data().surName}`;
+                  }
                   resolve(relevant);
                 });
             });
