@@ -11,7 +11,7 @@ const Businesses = {
     const url = 'https://data.stad.gent/api/records/1.0/search/?dataset=koop-lokaal-horeca&q=&rows=500&facet=postcode&facet=gemeente&refine.postcode=9000';
     fetch(url)
       .then((data) => data.json())
-      .then(async (data) => {
+      .then((data) => {
         const result = [];
 
         // get relevantData out of api
