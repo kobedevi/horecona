@@ -73,7 +73,6 @@ class User {
       .then(async (data) => {
         if (data.docs[0] === undefined) {
           await db.collection('users').add(thisUser)
-          // add a filter for businessowners to redirect to their page
             .then(() => window.location.replace('/profileInfo'));
         } else {
           window.location.replace('/dashboard');

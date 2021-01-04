@@ -45,6 +45,9 @@ This was created by Devillé Kobe!
 - technisch verplicht:
 	- service workers
 
+- remaining time:
+	- nested thens fixen
+
 - oplevering
 	- adobe xd DONE
 	- uml schema
