@@ -2,7 +2,7 @@
 import App from './App';
 import {
   // eslint-disable-next-line max-len
-  HomeComponent, LoginComponent, RegisterComponent, ProfileInfoComponent, BusinessInfoComponent, TestComponent, UserDashboard, Scanner, Generator, History,
+  HomeComponent, LoginComponent, RegisterComponent, ProfileInfoComponent, BusinessInfoComponent, UserDashboard, Scanner, Generator, History, ActiveUsers,
 } from './Components';
 
 import 'firebase/firestore';
@@ -31,7 +31,7 @@ const initApp = async () => {
   app.addComponent(new Scanner());
   app.addComponent(new Generator());
   app.addComponent(new History());
-  app.addComponent(new TestComponent());
+  app.addComponent(new ActiveUsers());
 };
 
 window.addEventListener('load', initApp);
