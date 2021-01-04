@@ -7,17 +7,17 @@ import UserDashboard from './UserDashboard';
 import Scanner from './Scanner';
 import Generator from './Generator';
 import History from './History';
-import TestComponent from './TestComponent';
+import ActiveUsers from './ActiveUsers';
 
 export {
   HomeComponent,
   LoginComponent,
   RegisterComponent,
-  TestComponent,
   ProfileInfoComponent,
   BusinessInfoComponent,
   Scanner,
   Generator,
   UserDashboard,
   History,
+  ActiveUsers,
 };
