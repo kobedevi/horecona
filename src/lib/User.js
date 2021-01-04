@@ -42,6 +42,11 @@ class User {
                     user: data.docs[0].data().uid,
                     type: data.docs[0].data().type,
                   };
+                  // if type == business pass business name
+                  if (relevant.type === 'Business') {
+                    relevant.business = userInfo.docs[0].data().Business;
+                  }
+                  // if an info collection is found pass the name
                   if (!(userInfo.docs[0] === undefined)) {
                     relevant.username = `${userInfo.docs[0].data().firstName} ${userInfo.docs[0].data().surName}`;
                   }
@@ -136,13 +141,12 @@ class User {
     await db.collection('users').doc(userData.docid).collection('checkin').add(checkinInfo);
     // eslint-disable-next-line max-len
     delete checkinInfo.name;
+    checkinInfo.docid = userData.docid;
     checkinInfo.uid = userData.user;
     checkinInfo.username = userData.username;
     // add to business checkins
     await db.collection('registeredBusinesses').where('name', '==', businessName).get()
       .then(async (docRef) => {
-        console.log(docRef.docs[0].id);
-        console.log(checkinInfo);
         await db.collection('registeredBusinesses').doc(docRef.docs[0].id).collection('checkins').add(checkinInfo)
           .then(() => {
             window.location.replace('dashboard');
@@ -154,20 +158,29 @@ class User {
     const db = firebase.firestore();
     console.log(userData);
     console.log(businessData);
-
     // set user checkin active to false
-    await db.collection('users').doc(userData.docid).collection('checkin').doc(businessData.id)
-      .update({ active: false });
+    await db.collection('users').doc(userData.docid).collection('checkin').where('active', '==', true)
+      .get()
+      .then(async (docRef) => {
+        await db.collection('users').doc(userData.docid).collection('checkin').doc(docRef.docs[0].id)
+          // .get();
+          .update({ active: false });
+      });
     // get business docid
     await db.collection('registeredBusinesses').where('name', '==', businessData.data.name).get()
       .then(async (docRef) => {
+        console.log(docRef.docs[0].id);
         // get docid of user active
         // eslint-disable-next-line newline-per-chained-call
-        await db.collection('registeredBusinesses').doc(docRef.docs[0].id).collection('checkins').where('uid', '==', userData.user).get()
+        await db.collection('registeredBusinesses').doc(docRef.docs[0].id).collection('checkins').where('uid', '==', userData.user).where('active', '==', true).get()
           .then(async (uidDoc) => {
             await db.collection('registeredBusinesses').doc(docRef.docs[0].id).collection('checkins').doc(uidDoc.docs[0].id)
               .update({ active: false })
-              .then(() => window.location.replace('/dashboard'));
+              .then(() => {
+                if (!(businessData.businessCheckout)) {
+                  window.location.replace('/dashboard');
+                }
+              });
           });
       });
   }
