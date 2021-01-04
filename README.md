@@ -24,7 +24,7 @@ This was created by Devillé Kobe!
 		- bezoeker: DONE
 		    - registreert (externe provider/email) DONE
 		    - extra info DONE
-		- zaakvoerder:
+		- zaakvoerder: DONE
 		- registreert (externe provider/email) DONE
 		- extra info DONE
 
@@ -36,7 +36,7 @@ This was created by Devillé Kobe!
 		- aanpassen gegevens
 		- historiek DONE
 	- zaakvoerder:
-		- lijst van de bezoekers (kunnen uitchecken)
+		- lijst van de bezoekers (kunnen uitchecken) DONE
 		- historiek DONE
 		- aanpassen gegevens
 		- aanmaken unieke QR code DONE
@@ -44,6 +44,7 @@ This was created by Devillé Kobe!
 
 - technisch verplicht:
 	- service workers
+	- webapp
 
 - remaining time:
 	- nested thens fixen

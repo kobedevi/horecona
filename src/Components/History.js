@@ -59,7 +59,6 @@ class UserDashboard extends Component {
           let masterDate = checkin.data().createdOn.toDate();
           // slice the bit we actually need
           masterDate = masterDate.toString().slice(0, 21);
-          // eslint-disable-next-line max-len
           const historyItem = Elements.history({
             place: checkin.data().name,
             date: masterDate,
@@ -105,7 +104,7 @@ class UserDashboard extends Component {
     btn.addEventListener('click', async (e) => {
       e.preventDefault();
       const businessInfo = await this.businessInfo();
-      await new Business().history(businessInfo, input.value)
+      await new Business().history(businessInfo)
         .then((checkins) => {
           const historyContainer = document.createElement('div');
           historyContainer.id = 'historyContainer';
