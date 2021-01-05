@@ -12,6 +12,7 @@ import iconCheckin from '../img/icons/checkin.svg';
 import iconGenerate from '../img/icons/generate.svg';
 import iconUsers from '../img/icons/users.svg';
 import iconHistory from '../img/icons/history.svg';
+import iconEdit from '../img/icons/edit.svg';
 import iconLogout from '../img/icons/logout.svg';
 
 const Handlebars = require('handlebars');
@@ -43,7 +44,9 @@ const Elements = {
     return `<h3 class="textMargin">${textContent}</h3>`;
   },
 
-  actionBtn({ textContent = 'Action description', icon = 'checkin', href = '#' }) {
+  actionBtn({
+    textContent = 'Action description', icon = 'checkin', href = '#', onClick = null,
+  }) {
     const a = document.createElement('a');
     a.href = href;
     a.classList.add('action', 'textMargin');
@@ -68,8 +71,20 @@ const Elements = {
       case 'logout':
         img.src = iconLogout;
         break;
+      case 'edit':
+        img.src = iconEdit;
+        break;
       default:
         img.alt = 'image not found';
+    }
+
+    if (onClick) {
+      a.classList.add('small_gradient_button');
+      a.setAttribute('style', 'position:relative; bottom:unset; padding:0; margin-top:0;');
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        onClick();
+      });
     }
 
     const p = document.createElement('p');
@@ -158,7 +173,7 @@ const Elements = {
     }
     return button;
   },
-  navigation({ active = null, home = '/dashboard', profile = '/dashboard' }) {
+  navigation({ active = null, home = '/dashboard', profile = '/dashboard/profile' }) {
     let nav;
     if (active === 'home') {
       const classData = {

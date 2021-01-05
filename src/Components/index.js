@@ -8,6 +8,7 @@ import Scanner from './Scanner';
 import Generator from './Generator';
 import History from './History';
 import ActiveUsers from './ActiveUsers';
+import Profile from './Profile';
 
 export {
   HomeComponent,
@@ -20,4 +21,5 @@ export {
   UserDashboard,
   History,
   ActiveUsers,
+  Profile,
 };

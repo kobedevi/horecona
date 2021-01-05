@@ -149,7 +149,7 @@ class User {
       .then(async (docRef) => {
         await db.collection('registeredBusinesses').doc(docRef.docs[0].id).collection('checkins').add(checkinInfo)
           .then(() => {
-            window.location.replace('dashboard');
+            window.location.replace('/dashboard');
           });
       });
   }

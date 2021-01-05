@@ -4,14 +4,8 @@
 This was created by Devillé Kobe!
 
 ### Where did you leave off?
-- dashboard (basics done)  DONE
-- dashboard businesss naam/ manager inladen DONE
-- check in action DONE
-- check if user checked in/out DONE
-- check out action DONE
-- user qr code opvangen DONE
-- qr code generaten DONE
-- register hertesten door getthisuser2 DONE
+- edit profile
+- logout
 - service workers
 - firebase #9 10:50
 - redirect to login/ dashboard
