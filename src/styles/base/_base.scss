@@ -4,6 +4,12 @@
 *{
     box-sizing: border-box;
     color: vars.$mainText;
+    opacity: 0;
+    transition: opacity .2s;
+}
+
+*{
+    opacity: 1;
 }
 
 html{
@@ -39,7 +45,6 @@ main{
     width: 100%;
     display: flex;
     position: relative;
-    // flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
@@ -64,6 +69,47 @@ main.left{
     align-items: flex-start;
     .textMargin{
         margin-left: 16px;
+    }
+}
+
+// fade in content
+.pageContainer *{
+    animation: fadein .2s;
+    -moz-animation: fadein .2s; /* Firefox */
+    -webkit-animation: fadein .2s; /* Safari and Chrome */
+    -o-animation: fadein .2s; /* Opera */
+}
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
     }
 }
 
