@@ -1,5 +1,5 @@
 export default `
-    <div class="history-item action">
+    <div class="history-item button__action">
         <div class="history-data">
             <p>{{place}}</p>
             <p class="date">{{date}}</p>
