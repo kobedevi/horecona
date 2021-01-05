@@ -9,16 +9,7 @@ import 'firebase/firestore';
 // import initFirebase from './lib/Firebase';
 import 'firebase/auth';
 
-// const onAuthStateChanged = async (user) => {
-//   const executed = JSON.parse(localStorage.getItem('executed'));
-//   if (!executed) {
-//     localStorage.setItem('executed', true);
-//     if (user) window.location.replace('/tester');
-//   }
-// };
-
 const initApp = async () => {
-  // initFirebase();
   const appContainer = document.getElementById('appContainer');
 
   const app = new App(appContainer);
@@ -33,6 +24,11 @@ const initApp = async () => {
   app.addComponent(new History());
   app.addComponent(new ActiveUsers());
   app.addComponent(new Profile());
+
+  // register serviceworker if possible
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js');
+  }
 };
 
 window.addEventListener('load', initApp);
