@@ -37,7 +37,7 @@ This was created by Devillé Kobe!
 
 
 - technisch verplicht:
-	- service workers
+	- service workers DONE
 	- webapp
 
 - remaining time:
