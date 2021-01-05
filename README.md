@@ -35,12 +35,13 @@ This was created by Devillé Kobe!
 		- aanpassen gegevens
 		- aanmaken unieke QR code DONE
 
-
-- technisch verplicht:
-	- service workers DONE
-	- webapp
-
-- remaining time:
+- random shit:
+	- uml schema
+	- double reload (double model update)
+		- make own object and fill in with data, save as one object update
+	- css mediaqueries (box phone borders)
+	- redirect if not logged in
+	- bem structuur
 	- nested thens fixen
 
 - oplevering

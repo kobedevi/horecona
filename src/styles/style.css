@@ -620,6 +620,12 @@ header svg {
   left: calc(50% - 3px);
 }
 
+#map {
+  width: 100%;
+  min-height: 200px;
+  border-radius: 27px;
+}
+
 .history-item.action {
   justify-content: space-between;
   text-align: left;

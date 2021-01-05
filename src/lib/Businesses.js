@@ -19,6 +19,7 @@ const Businesses = {
         for (const [, value] of Object.entries(data.records)) {
           const relevantInfo = {
             name: value.fields.naam,
+            location: value.fields.adres,
           };
           result.push(relevantInfo);
         }
@@ -43,6 +44,27 @@ const Businesses = {
             // taken from: https://stackoverflow.com/questions/21987909/how-to-get-the-difference-between-two-arrays-of-objects-in-javascript
             // eslint-disable-next-line max-len
             const resultTwo = data.filter(({ name: id1 }) => !filterArray.some(({ name: id2 }) => id2 === id1));
+            resolve(resultTwo);
+          });
+      });
+  }),
+
+  locationRegistered: async () => new Promise((resolve) => {
+    Businesses.getAll()
+      .then(async (data) => {
+        const filterArray = [];
+        // get the already registered businesses out of firebase
+        const db = firebase.firestore();
+        await db.collection('registeredBusinesses').get()
+          .then((filterer) => {
+            // push all results to filterArray
+            filterer.forEach((filter) => {
+              filterArray.push(filter.data());
+            });
+            // filter results, so only registered businesses show up
+            // altered from: https://stackoverflow.com/questions/21987909/how-to-get-the-difference-between-two-arrays-of-objects-in-javascript
+            // eslint-disable-next-line max-len
+            const resultTwo = data.filter(({ name: id1 }) => filterArray.some(({ name: id2 }) => id2 === id1));
             resolve(resultTwo);
           });
       });

@@ -9,6 +9,8 @@ import 'firebase/firestore';
 
 import checkout from '../img/icons/checkout.svg';
 
+import mapbox from '../lib/mapbox';
+
 import Elements from '../lib/Elements';
 import Component from '../lib/Component';
 import User from '../lib/User';
@@ -37,7 +39,6 @@ class UserDashboard extends Component {
               this.model.profileInfo = data;
               this.model.checkin = checkinData;
             });
-          // this.model.profileInfo = data;
           this.userLoaded = true;
         });
     }
@@ -53,6 +54,20 @@ class UserDashboard extends Component {
     const query = await db.collection('users').doc(this.model.profileInfo.docid).collection('info').get()
       .then(async (data) => data.docs[0].data());
     return query;
+  }
+
+  async mapbox(container) {
+    // div loads in to slow, promise to solve this
+    const myPromise = new Promise((myResolve) => {
+      const div = document.createElement('div');
+      div.id = 'map';
+      container.append(div);
+      myResolve(); // when successful
+    });
+    // when mapcontainer is ready load in map
+    myPromise.then(() => {
+      mapbox.load();
+    });
   }
 
   userDashboard(container) {
@@ -75,13 +90,15 @@ class UserDashboard extends Component {
     main.classList.add('left');
 
     main.insertAdjacentHTML('beforeend', Elements.subsubtitle({ textContent: 'Corona proof locations' }));
+    this.mapbox(main);
+
     main.insertAdjacentHTML('beforeend', Elements.subsubtitle({ textContent: 'Actions' }));
     // if user is not checked in checked in show check in button
     if (this.model.checkin === null) {
       main.appendChild(Elements.actionBtn({ textContent: 'Check in', icon: 'checkin', href: '/scanner' }));
     } else {
       // else check out button
-      // Handlebars is shit with this so I create it once here...
+      // Handlebars is shit with this so I create the element once here...
       const button = document.createElement('a');
       button.href = '#';
       button.classList.add('action', 'textMargin');

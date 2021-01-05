@@ -43,7 +43,7 @@ class User {
                     type: data.docs[0].data().type,
                   };
                   // if type == business pass business name
-                  if (relevant.type === 'Business') {
+                  if (relevant.type === 'Business' && !(userInfo.docs[0] === undefined)) {
                     relevant.business = userInfo.docs[0].data().Business;
                   }
                   // if an info collection is found pass the name
