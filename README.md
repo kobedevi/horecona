@@ -26,7 +26,7 @@ This was created by Devillé Kobe!
 	- horeca bezoeker:
 		- inchecken in een zaak DONE
 		- uitchecken DONE
-		- opvragen van zaken waar het corona veilig is
+		- opvragen van zaken waar het corona veilig is DONE
 		- aanpassen gegevens
 		- historiek DONE
 	- zaakvoerder:
@@ -37,12 +37,12 @@ This was created by Devillé Kobe!
 
 - random shit:
 	- uml schema
-	- double reload (double model update)
+	- double reload (double model update) // extra
 		- make own object and fill in with data, save as one object update
 	- css mediaqueries (box phone borders)
 	- redirect if not logged in
 	- bem structuur
-	- nested thens fixen
+	- nested thens fixen // extra
 
 - oplevering
 	- adobe xd DONE

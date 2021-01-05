@@ -49,7 +49,7 @@ const Elements = {
   }) {
     const a = document.createElement('a');
     a.href = href;
-    a.classList.add('action', 'textMargin');
+    a.classList.add('button__action');
     const div = document.createElement('div');
     const img = document.createElement('img');
 
@@ -79,8 +79,7 @@ const Elements = {
     }
 
     if (onClick) {
-      a.classList.add('small_gradient_button');
-      a.setAttribute('style', 'position:relative; bottom:unset; padding:0; margin-top:0;');
+      a.classList.add('action__gradient');
       a.addEventListener('click', (e) => {
         e.preventDefault();
         onClick();

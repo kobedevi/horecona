@@ -590,7 +590,7 @@ header svg {
   margin-bottom: 40px;
 }
 
-.small_gradient_button, .action {
+.small_gradient_button, .button__action {
   filter: drop-shadow(0 7px 6px rgba(0, 0, 0, 0.27));
 }
 
@@ -691,40 +691,6 @@ header svg {
   margin-top: 64px;
 }
 
-.action {
-  height: 60px;
-  width: calc(100% - 32px);
-  display: flex;
-  align-items: center;
-  background: #282D3B;
-  border-radius: 27px;
-  text-decoration: none;
-}
-.action:not(:first-of-type) {
-  margin-top: 16px;
-}
-.action div {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.action div img {
-  margin-left: 16px;
-  fill: #7C5AF3;
-  width: 32px;
-  max-height: 32px;
-}
-.action div p {
-  font-size: 1.25rem;
-  margin: 0 0 0 32px;
-}
-.action.gradient {
-  background: url("../img/small-button.svg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
 .small_gradient_button {
   cursor: pointer;
   border: none;
@@ -754,6 +720,44 @@ form .small_gradient_button, #text .small_gradient_button {
   position: relative;
   bottom: unset;
   flex-grow: 1;
+}
+
+.button__action {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #282D3B;
+  border-radius: 27px;
+  text-decoration: none;
+}
+.button__action:not(:first-of-type) {
+  margin-top: 16px;
+}
+.button__action div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.button__action div img {
+  margin-left: 16px;
+  fill: #7C5AF3;
+  width: 32px;
+  max-height: 32px;
+}
+.button__action div p {
+  font-size: 1.25rem;
+  margin: 0 0 0 32px;
+}
+.button__action.action__gradient {
+  background: url("../img/small-button.svg");
+  position: relative;
+  bottom: unset;
+  padding: 0;
+  margin-top: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 form {

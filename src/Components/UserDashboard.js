@@ -101,7 +101,7 @@ class UserDashboard extends Component {
       // Handlebars is shit with this so I create the element once here...
       const button = document.createElement('a');
       button.href = '#';
-      button.classList.add('action', 'textMargin');
+      button.classList.add('button__action');
       const div = document.createElement('div');
       button.appendChild(div);
       const img = document.createElement('img');

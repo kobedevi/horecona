@@ -1,14 +1,5 @@
 @use "./variables" as vars;
 
-// square
-// ---
-// Return the width and height of the square
-// ------------------------------------------------------------------------- /
-@mixin square($size) {
-	width: vars.$size;
-	height: vars.$size;
-}
-
 // at
 // ---
 // screen and min-width breakpoint

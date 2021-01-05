@@ -18,13 +18,15 @@ const mapbox = {
     });
     // after location is received setup mapbox
     getLocation.then(async (location) => {
-      mapboxgl.accessToken = 'pk.eyJ1Ijoia29iZWRldiIsImEiOiJjanV3amozanQwMWU3NDVtMjJhc2MxZHgwIn0.RNl8P7JDFaOwGv51Aq92QQ';
+      mapboxgl.accessToken = 'pk.eyJ1Ijoia29iZWRldiIsImEiOiJja2pobGNyMnQ5OXV5MnlsYjNlM2ZsaHdsIn0._0AaGmn1b5SjwlwubRFB2g';
+      // add map
       const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [location.lon, location.lat],
         zoom: 14,
       });
+      // add user dot
       map.addControl(
         new mapboxgl.GeolocateControl({
           positionOptions: {
