@@ -45,22 +45,24 @@ class Generate extends Component {
     if (!this.model.business) {
       this.getUserData();
     } else {
+      // place everything in else otherwise it looks like it reloads twice
+      // header
+      container.insertAdjacentHTML('beforeend', Elements.createHeader({
+        size: 1,
+        title: 'QR-code',
+        subtitle: 'Generates a QR-code for people to check in with',
+      }));
+      main.insertAdjacentHTML('beforeend', Elements.navigation({ active: 'home' }));
+
+      container.insertAdjacentHTML('beforeend', '<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>');
+      container.appendChild(main);
+
       main.appendChild(div);
       QRCreator.qr(div, this.model.business.name);
       const businessName = document.createElement('h1');
       businessName.innerHTML = this.model.business.name;
       main.appendChild(businessName);
     }
-    // header
-    container.insertAdjacentHTML('beforeend', Elements.createHeader({
-      size: 1,
-      title: 'QR-code',
-      subtitle: 'Generates a QR-code for people to check in with',
-    }));
-    main.insertAdjacentHTML('beforeend', Elements.navigation({ active: 'home' }));
-
-    container.insertAdjacentHTML('beforeend', '<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>');
-    container.appendChild(main);
 
     return container;
   }

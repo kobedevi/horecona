@@ -117,8 +117,8 @@ class UserDashboard extends Component {
       });
       main.append(button);
     }
-    main.appendChild(Elements.actionBtn({ textContent: 'History', icon: 'history', href: '/history' }));
 
+    main.appendChild(Elements.actionBtn({ textContent: 'History', icon: 'history', href: '/history' }));
     main.insertAdjacentHTML('beforeend', Elements.navigation({ active: 'home' }));
 
     container.insertAdjacentHTML('beforeend', '<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>');

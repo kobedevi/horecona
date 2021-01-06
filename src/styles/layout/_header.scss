@@ -11,16 +11,6 @@
 // }
 
 
-// $l: 20em;
-
-// header {
-// 	display: flex;
-// 	height: 143px;
-// 	background: red;
-// 	clip-path: url(#svgPath);
-// }
-
-
 header{
 	display: flex;
 	position: relative;
@@ -32,7 +22,6 @@ header{
 		position: absolute;
 		display: flex;
 		flex-direction: column;
-		flex-wrap: wrap;
 		align-items: flex-start;
 		flex-wrap: wrap;
 		color: vars.$mainText;
