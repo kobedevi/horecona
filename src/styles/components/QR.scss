@@ -1,0 +1,7 @@
+#qrcode{
+    canvas{
+        // guarantees a white border around black pixels
+        // if this is not the case scanner can have a difficult time
+        border: 5px solid white;
+    }
+}

@@ -620,6 +620,10 @@ header svg {
   left: calc(50% - 3px);
 }
 
+#qrcode canvas {
+  border: 5px solid white;
+}
+
 #map {
   width: 100%;
   min-height: 200px;
@@ -722,6 +726,21 @@ form .small_gradient_button, #text .small_gradient_button {
   flex-grow: 1;
 }
 
+.history-item.button__action {
+  justify-content: space-between;
+  text-align: left;
+  padding: 8px 16px;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+}
+.history-item.button__action:not(:first-of-type) {
+  margin-top: 16px;
+}
+.history-item.button__action p {
+  margin: 0;
+}
+
 .button__action {
   height: 60px;
   width: 100%;
@@ -758,6 +777,11 @@ form .small_gradient_button, #text .small_gradient_button {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+.button__action span {
+  background-color: rgba(124, 90, 243, 0.25);
+  padding: 4px 8px;
+  border-radius: 50px;
 }
 
 form {

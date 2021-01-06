@@ -35,6 +35,22 @@ form .small_gradient_button, #text .small_gradient_button{
     flex-grow: 1;
 }
 
+.history-item.button__action{
+    justify-content: space-between;
+    text-align: left;
+    padding: 8px 16px;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    &:not(:first-of-type){
+        margin-top: 16px;
+    }
+    p{
+        margin: 0;
+    }
+    
+}
+
 .button__action{
     height: 60px;
     width: 100%;
@@ -72,5 +88,10 @@ form .small_gradient_button, #text .small_gradient_button{
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+    }
+    span{
+        background-color: rgba($color: vars.$main-solid-color, $alpha: 0.25);
+        padding: 4px 8px;
+        border-radius: 50px;
     }
 }
