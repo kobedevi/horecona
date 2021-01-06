@@ -34,11 +34,12 @@ This was created by Devillé Kobe!
 		- aanmaken unieke QR code DONE
 
 - random shit:
+	- message if history is empty (users/businesses)
 	- remove local storage DONE
 	- uml schema
 	- double reload (double model update) // extra
 		- make own object and fill in with data, save as one object update
-	- css mediaqueries (box phone borders)
+	- css mediaqueries (box phone borders) DONE
 	- redirect if not logged in
 	- bem structuur
 	- comments

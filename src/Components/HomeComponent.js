@@ -4,6 +4,7 @@
 
 import Component from '../lib/Component';
 import Elements from '../lib/Elements';
+import Router from '../Router';
 
 class HomeComponent extends Component {
   constructor() {
@@ -31,7 +32,7 @@ class HomeComponent extends Component {
     // subtitle
     main.insertAdjacentHTML('beforeend', Elements.subtitle({ textContent: 'Find businesses that are corona proof <br>around you!' }));
     // button
-    main.insertAdjacentHTML('beforeend', Elements.buttonLink({ href: '/login', textContent: 'Get Started' }));
+    main.insertAdjacentHTML('beforeend', Elements.buttonLink({ href: `${Router.getRouter().link('/login')}`, textContent: 'Get Started' }));
     homeContainer.appendChild(main);
     return homeContainer;
   }

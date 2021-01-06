@@ -4,7 +4,8 @@
 // example 
 @media screen and (min-width: vars.$screen-md) {
     body {
-        all: unset;
+        height: unset;
+        width: unset;
     }
     #appContainer{
         box-shadow: 0 0 0 10pt vars.$shadow;

@@ -916,7 +916,8 @@ form div input:focus + label {
 
 @media screen and (min-width: 900px) {
   body {
-    all: unset;
+    height: unset;
+    width: unset;
   }
 
   #appContainer {
