@@ -62,14 +62,11 @@ class User {
 
   async storeUser() {
     const db = firebase.firestore();
-    console.log(this.user.uid);
     const thisUser = {
       uid: this.user.uid,
       // if user logs in via provider without an account, default usertype to user
       type: (this.type !== null) ? this.type : 'user',
     };
-    // store key userData in localStorage
-    localStorage.setItem('user', JSON.stringify(thisUser));
 
     // check if this user has a record in db
     // if so, don't change it and relocate

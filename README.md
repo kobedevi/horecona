@@ -43,6 +43,7 @@ This was created by Devillé Kobe!
 	- css mediaqueries (box phone borders)
 	- redirect if not logged in
 	- bem structuur
+	- comments
 	- nested thens fixen // extra
 
 - oplevering

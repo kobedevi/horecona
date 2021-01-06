@@ -60,8 +60,6 @@ class Business {
       // if user logs in via provider without an account, default usertype to user
       type: (this.type !== null) ? this.type : 'user',
     };
-    // store key userData in localStorage
-    localStorage.setItem('user', JSON.stringify(thisUser));
 
     // check if this user has a record in db
     // if so, don't change it and relocate
