@@ -13,7 +13,7 @@ const Scanner = {
     // eslint-disable-next-line no-undef
     Html5Qrcode.getCameras().then((devices) => {
       if (devices && devices.length) {
-        const cameraId = devices[0].id; // <-- Select first camera in the list
+        const cameraId = devices[1].id; // <-- Select first camera in the list
         // eslint-disable-next-line no-undef
         const html5QrCode = new Html5Qrcode('reader'); // <-- reader-div element id
 
