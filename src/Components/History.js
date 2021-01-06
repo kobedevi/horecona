@@ -65,6 +65,9 @@ class UserDashboard extends Component {
           });
           historyContainer.insertAdjacentHTML('beforeend', historyItem);
         });
+        if (historyContainer.innerHTML === '') {
+          historyContainer.innerHTML = '<p>No history</p>';
+        }
       });
   }
 
@@ -132,6 +135,9 @@ class UserDashboard extends Component {
               historyContainer.insertAdjacentHTML('beforeend', historyItem);
             }
           });
+          if (historyContainer.innerHTML === '') {
+            historyContainer.innerHTML = '<p>No history</p>';
+          }
         });
     });
   }
