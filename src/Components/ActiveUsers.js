@@ -59,7 +59,7 @@ class ActiveUsers extends Component {
         // generate history item
         checkins.forEach((checkin) => {
           const userContainer = document.createElement('div');
-          userContainer.classList.add('history-item', 'action');
+          userContainer.classList.add('history-item', 'button__action');
           const data = document.createElement('div');
           data.classList.add('history-data');
           const name = document.createElement('p');
@@ -99,6 +99,10 @@ class ActiveUsers extends Component {
             await thisUser.checkout(userData, businessData);
           });
         });
+        // if there are no active users append a message
+        if (activeUserContainer.innerHTML === '') {
+          activeUserContainer.innerHTML = '<p>No active users</p>';
+        }
       });
   }
 

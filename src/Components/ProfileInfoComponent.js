@@ -43,10 +43,7 @@ class ProfileInfoComponent extends Component {
   render() {
     if (!this.model.profileInfo) {
       this.getUserData();
-    } else {
-      console.log(this.model.profileInfo);
-      if (this.model.profileInfo.type === 'Business') window.location.replace('/businessInfo');
-    }
+    } else if (this.model.profileInfo.type === 'Business') window.location.replace('/businessInfo');
     const container = document.createElement('section');
     container.classList.add('pageContainer');
 

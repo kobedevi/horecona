@@ -167,8 +167,6 @@ class User {
 
   async checkout(userData, businessData) {
     const db = firebase.firestore();
-    console.log(userData);
-    console.log(businessData);
     // set user checkin active to false
     await db.collection('users').doc(userData.docid).collection('checkin').where('active', '==', true)
       .get()
@@ -180,7 +178,6 @@ class User {
     // get business docid
     await db.collection('registeredBusinesses').where('name', '==', businessData.data.name).get()
       .then(async (docRef) => {
-        console.log(docRef.docs[0].id);
         // get docid of user active
         // eslint-disable-next-line newline-per-chained-call
         await db.collection('registeredBusinesses').doc(docRef.docs[0].id).collection('checkins').where('uid', '==', userData.user).where('active', '==', true).get()

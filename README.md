@@ -4,8 +4,6 @@
 This was created by Devillé Kobe!
 
 ### Where did you leave off?
-- edit profile
-- logout
 - service workers
 - firebase #9 10:50
 - redirect to login/ dashboard
@@ -36,7 +34,7 @@ This was created by Devillé Kobe!
 		- aanmaken unieke QR code DONE
 
 - random shit:
-	- remove local storage
+	- remove local storage DONE
 	- uml schema
 	- double reload (double model update) // extra
 		- make own object and fill in with data, save as one object update

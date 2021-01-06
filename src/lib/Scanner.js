@@ -38,11 +38,11 @@ const Scanner = {
         )
 
           .catch((err) => {
-            console.log(err); // <-- error when startup has failed
+            console.error(err); // <-- error when startup has failed
           });
       }
     }).catch((err) => {
-      console.log(err); // <-- error when there are no devices
+      console.error(err); // <-- error when there are no devices
     });
   }),
 };

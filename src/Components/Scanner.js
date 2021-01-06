@@ -39,7 +39,6 @@ class Scanner extends Component {
     textContainer.appendChild(text);
     main.appendChild(textContainer);
     const db = firebase.firestore();
-    console.log(name);
     await db.collection('registeredBusinesses').where('name', '==', name).get()
       .then(async (data) => {
         // if no registeredBusiness is found, let the user retry
@@ -52,36 +51,34 @@ class Scanner extends Component {
             },
             classes: ['small_gradient_button'],
           }));
-        } else {
-          // otherwise show scanned business
-          text.innerHTML = `You scanned "${name}",<br> is that correct?`;
-          const row = document.createElement('div');
-          row.classList.add('row');
-          textContainer.appendChild(row);
-          row.appendChild(Elements.submitButton({
-            textContent: 'Check-in',
-            onClick: async () => {
-              if (!this.userLoaded) {
-                const tempUser = new User();
-                await tempUser.getThisUser2()
-                  .then(async (userData) => {
-                    console.log(userData);
-                    await tempUser.checkin(userData, name);
-                  });
-              }
-            },
-            classes: ['small_gradient_button', 'col-6'],
-          }));
-          row.appendChild(Elements.submitButton({
-            textContent: 'cancel',
-            onClick: () => {
-              window.location.replace('/dashboard');
-            },
-            classes: ['small_gradient_button', 'outline', 'col-6'],
-          }));
-          return data.docs[0].id;
+          return null;
         }
-        console.log(data);
+        // otherwise show scanned business
+        text.innerHTML = `You scanned "${name}",<br> is that correct?`;
+        const row = document.createElement('div');
+        row.classList.add('row');
+        textContainer.appendChild(row);
+        row.appendChild(Elements.submitButton({
+          textContent: 'Check-in',
+          onClick: async () => {
+            if (!this.userLoaded) {
+              const tempUser = new User();
+              await tempUser.getThisUser2()
+                .then(async (userData) => {
+                  await tempUser.checkin(userData, name);
+                });
+            }
+          },
+          classes: ['small_gradient_button', 'col-6'],
+        }));
+        row.appendChild(Elements.submitButton({
+          textContent: 'cancel',
+          onClick: () => {
+            window.location.replace('/dashboard');
+          },
+          classes: ['small_gradient_button', 'outline', 'col-6'],
+        }));
+        return data.docs[0].id;
       });
   }
 

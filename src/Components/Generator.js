@@ -4,7 +4,6 @@
 
 import 'regenerator-runtime/runtime';
 
-import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 import Elements from '../lib/Elements';
@@ -35,21 +34,6 @@ class Generate extends Component {
     }
   }
 
-  async getCorrectBusiness() {
-    const db = firebase.firestore();
-    await db.collection('users').where('uid', '==', this.model.business.uid).doc(this.model.business.docid).get()
-      .then(async (data) => {
-        if (data.docs[0] === undefined) {
-          // nog opvangen en opnieuw laten scannen
-          console.log('bestaat niet');
-        } else {
-          // return business id
-          return data.docs[0].id;
-        }
-        console.log(data);
-      });
-  }
-
   render() {
     // create a container
     const container = document.createElement('section');
@@ -61,7 +45,6 @@ class Generate extends Component {
     if (!this.model.business) {
       this.getUserData();
     } else {
-      console.log(this.model.business);
       main.appendChild(div);
       QRCreator.qr(div, this.model.business.name);
       const businessName = document.createElement('h1');

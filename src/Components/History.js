@@ -47,7 +47,6 @@ class UserDashboard extends Component {
       title: 'History',
       subtitle: 'History of places you checked in',
     }));
-    console.log(this.model.profileInfo);
     await new User().history(this.model.profileInfo)
       .then((checkins) => {
         const historyContainer = document.createElement('div');
