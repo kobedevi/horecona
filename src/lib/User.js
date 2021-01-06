@@ -89,8 +89,10 @@ class User {
   async additionalInfo(formData) {
     let docID;
     const db = firebase.firestore();
+    // select the correct user
     await db.collection('users').where('uid', '==', this.user.uid).get()
       .then(async (data) => {
+        // set relevant data and docID for ease
         docID = data.docs[0].id;
         const infoData = {
           firstName: formData.get('firstName'),
@@ -98,7 +100,19 @@ class User {
           dateOfBirth: formData.get('dateOfBirth'),
           phoneNumber: formData.get('phone'),
         };
-        await db.collection('users').doc(docID).collection('info').add(infoData)
+        // get userinfo
+        await db.collection('users').doc(docID).collection('info').get()
+          .then(async (res) => {
+            // check if it exists if it doesn't add it
+            if (res.docs[0] === undefined) {
+              await db.collection('users').doc(docID).collection('info').add(infoData);
+            } else {
+              // otherwise update the existing info
+              await db.collection('users').doc(docID).collection('info').doc(res.docs[0].id)
+                .update(infoData);
+            }
+          })
+          // then go to dashboard
           .then(() => window.location.replace('/dashboard'));
       });
   }

@@ -55,7 +55,6 @@ class Business {
 
   async storeUser() {
     const db = firebase.firestore();
-    console.log(this.user.uid);
     const thisUser = {
       uid: this.user.uid,
       // if user logs in via provider without an account, default usertype to user
@@ -87,17 +86,33 @@ class Business {
       .then(async (data) => {
         docID = data.docs[0].id;
         const infoData = {
-          Business: formData.get('businessName'),
+          // Business: formData.get('businessName'),
           maxcap: formData.get('maximumCapacity'),
           firstName: formData.get('firstName'),
           surName: formData.get('surname'),
           dateOfBirth: formData.get('dateOfBirth'),
           phoneNumber: formData.get('phone'),
         };
-        await db.collection('users').doc(docID).collection('info').add(infoData)
-          .then(async () => {
-            await db.collection('registeredBusinesses').add({ name: infoData.Business });
+
+        // get userinfo
+        await db.collection('users').doc(docID).collection('info').get()
+          .then(async (res) => {
+            // check if it exists if it doesn't add it
+            if (res.docs[0] === undefined) {
+              // append business name to object
+              infoData.Business = formData.get('businessName');
+              // add it to users info and add the name to registeredBusinesses
+              await db.collection('users').doc(docID).collection('info').add(infoData)
+                .then(async () => {
+                  await db.collection('registeredBusinesses').add({ name: infoData.Business });
+                });
+            } else {
+              // otherwise just update the existing info
+              await db.collection('users').doc(docID).collection('info').doc(res.docs[0].id)
+                .update(infoData);
+            }
           })
+          // then go to dashboard
           .then(() => window.location.replace('/dashboard'));
       });
   }

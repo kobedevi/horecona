@@ -22,20 +22,21 @@ This was created by Devillé Kobe!
 		- registreert (externe provider/email) DONE
 		- extra info DONE
 
-- main applicatie
-	- horeca bezoeker:
+- main applicatie DONE
+	- horeca bezoeker: DONE
 		- inchecken in een zaak DONE
 		- uitchecken DONE
 		- opvragen van zaken waar het corona veilig is DONE
-		- aanpassen gegevens
+		- aanpassen gegevens DONE
 		- historiek DONE
-	- zaakvoerder:
+	- zaakvoerder: DONE
 		- lijst van de bezoekers (kunnen uitchecken) DONE
 		- historiek DONE
-		- aanpassen gegevens
+		- aanpassen gegevens DONE
 		- aanmaken unieke QR code DONE
 
 - random shit:
+	- remove local storage
 	- uml schema
 	- double reload (double model update) // extra
 		- make own object and fill in with data, save as one object update

@@ -38,38 +38,38 @@ class Profile extends Component {
   }
 
   render() {
-    if (!this.model.profileInfo) {
-      this.getUserData();
-    }
-
     // create a container
     const container = document.createElement('section');
     container.classList.add('pageContainer');
 
-    container.insertAdjacentHTML('beforeend', Elements.createHeader({
-      size: 1,
-      title: 'Profile',
-      subtitle: 'This is your profile page',
-    }));
+    if (!this.model.profileInfo) {
+      this.getUserData();
+    } else {
+      container.insertAdjacentHTML('beforeend', Elements.createHeader({
+        size: 1,
+        title: 'Profile',
+        subtitle: 'This is your profile page',
+      }));
 
-    const main = document.createElement('main');
-    main.classList.add('left');
+      const main = document.createElement('main');
+      main.classList.add('left');
 
-    main.insertAdjacentHTML('beforeend', Elements.subsubtitle({ textContent: 'Edit information' }));
-    main.appendChild(Elements.actionBtn({ textContent: 'Update info', icon: 'edit', href: '#' }));
+      main.insertAdjacentHTML('beforeend', Elements.subsubtitle({ textContent: 'Edit information' }));
+      main.appendChild(Elements.actionBtn({ textContent: 'Update info', icon: 'edit', href: '/profileInfo' }));
 
-    main.insertAdjacentHTML('beforeend', Elements.subsubtitle({ textContent: 'Actions' }));
-    main.appendChild(Elements.actionBtn({
-      textContent: 'Log out',
-      icon: 'logout',
-      onClick: () => {
-        firebase.auth().signOut();
-        window.location.replace('/login');
-      },
-    }));
-    main.insertAdjacentHTML('beforeend', Elements.navigation({ active: 'profile' }));
+      main.insertAdjacentHTML('beforeend', Elements.subsubtitle({ textContent: 'Actions' }));
+      main.appendChild(Elements.actionBtn({
+        textContent: 'Log out',
+        icon: 'logout',
+        onClick: () => {
+          firebase.auth().signOut();
+          window.location.replace('/login');
+        },
+      }));
+      main.insertAdjacentHTML('beforeend', Elements.navigation({ active: 'profile' }));
 
-    container.append(main);
+      container.append(main);
+    }
 
     return container;
   }

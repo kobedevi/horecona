@@ -47,7 +47,6 @@ class ProfileInfoComponent extends Component {
       console.log(this.model.profileInfo);
       if (this.model.profileInfo.type === 'Business') window.location.replace('/businessInfo');
     }
-    this.getUserData();
     const container = document.createElement('section');
     container.classList.add('pageContainer');
 

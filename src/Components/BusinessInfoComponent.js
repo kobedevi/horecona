@@ -4,6 +4,10 @@
 
 import 'regenerator-runtime/runtime';
 
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+
 import Elements from '../lib/Elements';
 import Component from '../lib/Component';
 import Business from '../lib/Business';
@@ -40,6 +44,22 @@ class BusinessInfoComponent extends Component {
       });
   }
 
+  // checks if user info already exists
+  async isUpdate() {
+    const db = firebase.firestore();
+    let result;
+    const tempBusiness = new Business();
+    await tempBusiness.getThisUser()
+      .then(async (user) => db.collection('users').where('uid', '==', user.uid).get())
+      .then(async (docRef) => {
+        result = await db.collection('users').doc(docRef.docs[0].id).collection('info').get();
+      });
+    // only load businesses select option if no info exists
+    if (result.docs[0] === undefined) {
+      this.loadBusinesses();
+    }
+  }
+
   render() {
     // create a container
     const container = document.createElement('section');
@@ -47,8 +67,9 @@ class BusinessInfoComponent extends Component {
 
     const form = document.createElement('form');
 
+    // if there are no businesses loaded check if this is an update or creation
     if (!this.model.businesses) {
-      this.loadBusinesses();
+      this.isUpdate();
     } else {
       // create select menu
       const div = document.createElement('div');
