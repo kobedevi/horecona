@@ -17,27 +17,30 @@ class Scanner extends Component {
     super({
       name: 'Scanner',
       model: {
-        profileInfo: null,
       },
       routerPath: '/scanner',
     });
     this.userLoaded = false;
   }
 
+  // start up scanner
   async scannerData(main) {
     await Scannerlib.scanner()
       .then(async (message) => {
+        // pass data if something is scanned
         await this.getCorrectBusiness(main, message);
       });
   }
 
+  // look for business when code is scanned
   async getCorrectBusiness(main, name) {
     const textContainer = document.createElement('div');
     textContainer.id = 'text';
     const text = document.createElement('h3');
-    // check firebase for business
     textContainer.appendChild(text);
     main.appendChild(textContainer);
+
+    // check firebase for business
     const db = firebase.firestore();
     await db.collection('registeredBusinesses').where('name', '==', name).get()
       .then(async (data) => {
@@ -58,6 +61,7 @@ class Scanner extends Component {
         const row = document.createElement('div');
         row.classList.add('row');
         textContainer.appendChild(row);
+        // checkin button
         row.appendChild(Elements.submitButton({
           textContent: 'Check-in',
           onClick: async () => {
@@ -71,6 +75,7 @@ class Scanner extends Component {
           },
           classes: ['small_gradient_button', 'col-6'],
         }));
+        // cancel button
         row.appendChild(Elements.submitButton({
           textContent: 'cancel',
           onClick: () => {

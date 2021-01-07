@@ -25,6 +25,7 @@ class Form extends Component {
     user.storeUser();
   }
 
+  // errorContainer
   showError({ message }) {
     if (!message) return;
     const errorContainer = document.querySelector('form .error-container');
@@ -32,6 +33,7 @@ class Form extends Component {
     errorContainer.classList.remove('hide');
   }
 
+  // email register
   async register() {
     const formData = new FormData(document.querySelector('form'));
     const password = formData.get('password');
@@ -52,6 +54,7 @@ class Form extends Component {
     }
   }
 
+  // google register/login
   async loginGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
     await firebase.auth()
@@ -59,6 +62,7 @@ class Form extends Component {
     firebase.auth().onAuthStateChanged(this.storeAditional);
   }
 
+  // email login
   async loginEmail() {
     const formData = new FormData(document.querySelector('form'));
     const email = formData.get('email');

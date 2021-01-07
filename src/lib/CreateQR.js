@@ -13,13 +13,12 @@ const generator = {
       // if need more data, use objects
       data: input,
       image: appIcon,
+      // classic black/white color, scan accuracy was way to low otherwise
       dotsOptions: {
-        // color: '#7c5af3',
         color: 'black',
         type: 'square',
       },
       backgroundOptions: {
-        // color: '#231F36',
         color: 'white',
       },
       imageOptions: {

@@ -41,7 +41,9 @@ class UserDashboard extends Component {
     return query;
   }
 
+  // page for users
   async userHistory(container) {
+    // header
     container.insertAdjacentHTML('beforeend', Elements.createHeader({
       size: 1,
       title: 'History',
@@ -71,12 +73,14 @@ class UserDashboard extends Component {
       });
   }
 
+  // page for businesses
   async businessHistory(container) {
     container.insertAdjacentHTML('beforeend', Elements.createHeader({
       size: 1,
       title: 'History',
       subtitle: 'History of users that checked in here',
     }));
+
     // --- history date selector
     const form = document.createElement('form');
     form.setAttribute('method', 'POST');
@@ -103,11 +107,13 @@ class UserDashboard extends Component {
     container.append(form);
     // --- end history date selector
 
+    // get checkins of user input date
     btn.addEventListener('click', async (e) => {
       e.preventDefault();
       const businessInfo = await this.businessInfo();
       await new Business().history(businessInfo)
         .then((checkins) => {
+          // create container
           const historyContainer = document.createElement('div');
           historyContainer.id = 'historyContainer';
           historyContainer.classList.add('history-container');
@@ -124,7 +130,10 @@ class UserDashboard extends Component {
             let userDate = new Date(input.value);
             userDate = userDate.toDateString();
 
-            // filter by date, server side is over complicated with server timestamp
+            /*
+            * filter client side by checking if server date === client date
+            * server side is over complicated with server timestamp
+            */
             if (checkDate === userDate) {
               const showDate = masterDate.toString().slice(4, 24);
               const historyItem = Elements.history({

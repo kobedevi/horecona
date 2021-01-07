@@ -83,6 +83,13 @@ class ProfileInfoComponent extends Component {
       container.appendChild(main);
     }
 
+    /*
+    async functions can take a while so show that it's loading
+    */
+    if (container.innerHTML === '') {
+      container.innerHTML = '<p>Loading...</p>';
+    }
+
     return container;
   }
 }

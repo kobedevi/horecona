@@ -27,11 +27,7 @@ class Profile extends Component {
       const tempUser = new User();
       await tempUser.getThisUser()
         .then(async (data) => {
-          await tempUser.getCheckinData(data)
-            .then((checkinData) => {
-              this.model.profileInfo = data;
-              this.model.checkin = checkinData;
-            });
+          this.model.profileInfo = data;
           this.userLoaded = true;
         });
     }

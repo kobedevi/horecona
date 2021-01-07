@@ -45,7 +45,6 @@ class Generate extends Component {
     if (!this.model.business) {
       this.getUserData();
     } else {
-      // place everything in else otherwise it looks like it reloads twice
       // header
       container.insertAdjacentHTML('beforeend', Elements.createHeader({
         size: 1,
@@ -58,6 +57,7 @@ class Generate extends Component {
       container.appendChild(main);
 
       main.appendChild(div);
+      // generate qr
       QRCreator.qr(div, this.model.business.name);
       const businessName = document.createElement('h1');
       businessName.innerHTML = this.model.business.name;

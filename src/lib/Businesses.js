@@ -7,6 +7,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 const Businesses = {
+  // get all business names
   getAll: async () => new Promise((resolve) => {
     const url = 'https://data.stad.gent/api/records/1.0/search/?dataset=koop-lokaal-horeca&q=&rows=500&facet=postcode&facet=gemeente&refine.postcode=9000';
     fetch(url)
@@ -17,6 +18,7 @@ const Businesses = {
         // get relevantData out of api
         // eslint-disable-next-line no-restricted-syntax
         for (const [, value] of Object.entries(data.records)) {
+          // store all the info that's needed
           const relevantInfo = {
             name: value.fields.naam,
             location: value.fields.adres,
@@ -27,6 +29,7 @@ const Businesses = {
       });
   }),
 
+  // get all the non registered businesses
   getNonRegistered: async () => new Promise((resolve) => {
     // get all businesses
     Businesses.getAll()
@@ -49,6 +52,7 @@ const Businesses = {
       });
   }),
 
+  // get all the registered bussinesses
   locationRegistered: async () => new Promise((resolve) => {
     Businesses.getAll()
       .then(async (data) => {

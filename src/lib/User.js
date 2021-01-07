@@ -13,10 +13,11 @@ class User {
   }
 
   async getThisUser() {
-    // promise might need to be refactored? safer to keep resolved now
     return new Promise((resolve, reject) => {
       try {
         firebase.auth().onAuthStateChanged(async (user) => {
+          // if not logged in redirect
+          if (!user) window.location.replace('login');
           await firebase.firestore().collection('users').where('uid', '==', user.uid).get()
             .then(async (data) => {
               await firebase.firestore().collection('users').doc(data.docs[0].id).collection('info')
@@ -28,11 +29,11 @@ class User {
                     type: data.docs[0].data().type,
                   };
                   this.user = user;
-                  // if type == business and it has an extra info stored
+                  // if type === business and it has an extra info stored
                   if (relevant.type === 'Business' && !(userInfo.docs[0] === undefined)) {
                     relevant.business = userInfo.docs[0].data().Business;
                   }
-                  // if an info collection is found pass the name
+                  // if an info collection is found pass the manager name
                   if (!(userInfo.docs[0] === undefined)) {
                     relevant.username = `${userInfo.docs[0].data().firstName} ${userInfo.docs[0].data().surName}`;
                   }
@@ -100,6 +101,7 @@ class User {
       });
   }
 
+  // get checkindata
   async getCheckinData(userData) {
     return new Promise((resolve, reject) => {
       try {

@@ -2,6 +2,7 @@
 import Businesses from './Businesses';
 
 const mapbox = {
+  // load mapbox
   load: () => {
     // get user location
     const getLocation = new Promise((resolve, reject) => {
@@ -36,6 +37,9 @@ const mapbox = {
         }),
       );
 
+      /*
+      * set markers on map
+      */
       // get all registered businesses
       await Businesses.locationRegistered()
         .then((results) => {

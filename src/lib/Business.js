@@ -17,6 +17,7 @@ class Business {
     return new Promise((resolve, reject) => {
       try {
         firebase.auth().onAuthStateChanged(async (user) => {
+          if (!user) window.location.replace('login');
           await firebase.firestore().collection('users').where('uid', '==', user.uid).get()
             .then(async (data) => {
               const relevant = {

@@ -20,7 +20,6 @@ class UserDashboard extends Component {
     super({
       name: 'Dashboard',
       model: {
-        locations: null,
         profileInfo: null,
         checkin: null,
       },
@@ -29,11 +28,13 @@ class UserDashboard extends Component {
     this.userLoaded = false;
   }
 
+  // get userdata
   async getUserData() {
     if (!this.userLoaded) {
       const tempUser = new User();
       await tempUser.getThisUser()
         .then(async (data) => {
+          // check if user is checked in
           await tempUser.getCheckinData(data)
             .then((checkinData) => {
               this.model.profileInfo = data;
@@ -49,6 +50,7 @@ class UserDashboard extends Component {
     await tempUser.checkout(this.model.profileInfo, this.model.checkin);
   }
 
+  // get businessInfo
   async businessInfo() {
     const db = firebase.firestore();
     const query = await db.collection('users').doc(this.model.profileInfo.docid).collection('info').get()
@@ -56,6 +58,7 @@ class UserDashboard extends Component {
     return query;
   }
 
+  // generate map
   async mapbox(container) {
     // div loads in to slow, promise to solve this
     const myPromise = new Promise((myResolve) => {
@@ -70,6 +73,7 @@ class UserDashboard extends Component {
     });
   }
 
+  // dashboard for users
   userDashboard(container) {
     // header
     if (!this.model.checkin) {
@@ -125,6 +129,7 @@ class UserDashboard extends Component {
     container.appendChild(main);
   }
 
+  // dashboard for businesses
   async businessDashboard(container) {
     // get business name & manager name
     const businessInfo = await this.businessInfo();
