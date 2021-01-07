@@ -17,12 +17,13 @@
 @use "./layout/navigation";
 
 // components
-@use "./components/QR.scss";
-@use "./components/map.scss";
-@use "./components/history.scss";
-@use "./components/scanner.scss";
-@use "./components/buttons.scss";
-@use "./components/inputs.scss";
+// @use "./components/QR.scss";
+// @use "./components/map.scss";
+// @use "./components/history.scss";
+// @use "./components/scanner.scss";
+// @use "./components/buttons.scss";
+// @use "./components/inputs.scss";
 
 // pages
+@use "./pages/home.scss";
 @use "./pages/login.scss";

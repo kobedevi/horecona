@@ -40,9 +40,8 @@ This was created by Devillé Kobe!
 	- double reload (double model update) DONE
 	- css mediaqueries (box phone borders) DONE
 	- redirect if not logged in DONE
-	- bem structuur
+	- bem structuur DONE
 	- comments DONE
-	- nested thens fixen // extra
 
 - oplevering
 	- adobe xd DONE
