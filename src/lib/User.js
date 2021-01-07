@@ -73,7 +73,7 @@ class User {
     let docID;
     const db = firebase.firestore();
     // select the correct user
-    await db.collection('users').where('uid', '==', this.user.uid).get()
+    await db.collection('users').where('uid', '==', this.user.user).get()
       .then(async (data) => {
         // set relevant data and docID for ease
         docID = data.docs[0].id;

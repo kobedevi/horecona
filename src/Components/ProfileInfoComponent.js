@@ -20,15 +20,16 @@ class ProfileInfoComponent extends Component {
     this.userLoaded = false;
   }
 
+  // save user data
   async saveData() {
+    // get form data
     const formData = new FormData(document.querySelector('form'));
-    const tempUser = new User();
-    await tempUser.getThisUser()
-      .then(() => {
-        tempUser.additionalInfo(formData);
-      });
+    const tempUser = new User(this.model.profileInfo, 'user');
+    // store it with the relevant user id
+    tempUser.additionalInfo(formData);
   }
 
+  // get relevant user data
   async getUserData() {
     if (!this.userLoaded) {
       const tempUser = new User();
@@ -41,41 +42,46 @@ class ProfileInfoComponent extends Component {
   }
 
   render() {
-    if (!this.model.profileInfo) {
-      this.getUserData();
-    } else if (this.model.profileInfo.type === 'Business') window.location.replace('/businessInfo');
     const container = document.createElement('section');
     container.classList.add('pageContainer');
 
-    // header
-    container.insertAdjacentHTML('beforeend', Elements.createHeader({
-      size: 1,
-      title: 'Profile info',
-      subtitle: 'Tell us a little about yourself',
-    }));
+    // get user data before continuing
+    if (!this.model.profileInfo) {
+      this.getUserData();
+      // if the user is a business redirect
+    } else if (this.model.profileInfo.type === 'Business') {
+      window.location.replace('/businessInfo');
+      // otherwise render the page
+    } else {
+      // header
+      container.insertAdjacentHTML('beforeend', Elements.createHeader({
+        size: 1,
+        title: 'Profile info',
+        subtitle: 'Tell us a little about yourself',
+      }));
 
-    const main = document.createElement('main');
-    // form
-    const form = document.createElement('form');
+      const main = document.createElement('main');
+      // form
+      const form = document.createElement('form');
+      form.insertAdjacentHTML('beforeend', Elements.form({
+        type: 'profileInfo',
+      }));
 
-    form.insertAdjacentHTML('beforeend', Elements.form({
-      type: 'profileInfo',
-    }));
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+      });
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-    });
+      const saveBtn = Elements.submitButton2({
+        textContent: 'Save',
+        onClick: this.saveData.bind(this),
+        classes: ['small_gradient_button', 'col-12'],
+      });
 
-    const saveBtn = Elements.submitButton2({
-      textContent: 'Save',
-      onClick: this.saveData.bind(this),
-      classes: ['small_gradient_button', 'col-12'],
-    });
-
-    form.appendChild(saveBtn);
-    main.appendChild(form);
-    container.insertAdjacentHTML('beforeend', '<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>');
-    container.appendChild(main);
+      form.appendChild(saveBtn);
+      main.appendChild(form);
+      container.insertAdjacentHTML('beforeend', '<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>');
+      container.appendChild(main);
+    }
 
     return container;
   }
