@@ -37,12 +37,11 @@ This was created by Devillé Kobe!
 	- message if history is empty (users/businesses) DONE
 	- remove local storage DONE
 	- uml schema
-	- double reload (double model update) // extra
-		- make own object and fill in with data, save as one object update
+	- double reload (double model update) DONE
 	- css mediaqueries (box phone borders) DONE
-	- redirect if not logged in
+	- redirect if not logged in DONE
 	- bem structuur
-	- comments
+	- comments DONE
 	- nested thens fixen // extra
 
 - oplevering

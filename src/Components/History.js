@@ -52,7 +52,7 @@ class UserDashboard extends Component {
     await new User().history(this.model.profileInfo)
       .then((checkins) => {
         const historyContainer = document.createElement('div');
-        historyContainer.classList.add('history-container');
+        historyContainer.classList.add('o-history-container');
 
         container.appendChild(historyContainer);
         checkins.forEach((checkin) => {
@@ -87,7 +87,7 @@ class UserDashboard extends Component {
     form.classList.add('textMargin');
 
     const btn = document.createElement('input');
-    btn.classList.add('small_gradient_button');
+    btn.classList.add('m-button__small_gradient_button');
     btn.type = 'submit';
     btn.value = 'see visitors';
     const div = document.createElement('div');
@@ -116,7 +116,7 @@ class UserDashboard extends Component {
           // create container
           const historyContainer = document.createElement('div');
           historyContainer.id = 'historyContainer';
-          historyContainer.classList.add('history-container');
+          historyContainer.classList.add('o-history-container');
 
           container.appendChild(historyContainer);
           // generate history item

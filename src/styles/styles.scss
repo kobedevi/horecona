@@ -14,7 +14,6 @@
 // Layout
 @use "./layout/grid";
 @use "./layout/header";
-@use "./layout/footer";
 @use "./layout/navigation";
 
 // components
@@ -24,8 +23,6 @@
 @use "./components/scanner.scss";
 @use "./components/buttons.scss";
 @use "./components/inputs.scss";
-@use "./components/titles.scss";
 
 // pages
-@use "./pages/home.scss";
 @use "./pages/login.scss";

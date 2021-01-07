@@ -33,11 +33,11 @@ const Elements = {
   },
 
   title({ textContent = 'This is a title' }) {
-    return `<h1>${textContent}</h1>`;
+    return `<h1 class=".m-tittle">${textContent}</h1>`;
   },
 
   subtitle({ textContent = 'This is a title' }) {
-    return `<p>${textContent}</p>`;
+    return `<p class=".m-subtitle">${textContent}</p>`;
   },
 
   subsubtitle({ textContent = 'this is a title' }) {
@@ -49,9 +49,11 @@ const Elements = {
   }) {
     const a = document.createElement('a');
     a.href = href;
-    a.classList.add('button__action');
+    a.classList.add('m-button__action');
     const div = document.createElement('div');
+    div.classList.add('m-action__container');
     const img = document.createElement('img');
+    img.classList.add('a-container__img');
 
     // check which icon to use
     img.alt = 'icon';
@@ -87,6 +89,7 @@ const Elements = {
     }
 
     const p = document.createElement('p');
+    p.classList.add('a-container__text');
     p.innerHTML = textContent;
     div.appendChild(img);
     div.appendChild(p);
@@ -96,7 +99,7 @@ const Elements = {
   },
 
   buttonLink({ textContent = 'This is your button', href = '#', target = '_self' }) {
-    return `<a href="${href}" target="${target}" class="small_gradient_button">${textContent}</a>`;
+    return `<a href="${href}" target="${target}" class="m-button__small_gradient_button">${textContent}</a>`;
   },
 
   form({ type = 'login' }) {

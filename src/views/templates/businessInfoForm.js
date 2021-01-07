@@ -1,6 +1,6 @@
 export default `
 
-    <div class="error-container hide"></div>
+    <div class="m-form__error-container hide"></div>
     <div class='together'>
         <input type="number" name="maximumCapacity" id="maximumCapacity" placeholder="20" min="1" required>
         <label for="maximumCapacity">Maximum capacity<span>*</span></label>

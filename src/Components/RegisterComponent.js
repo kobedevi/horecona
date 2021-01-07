@@ -46,7 +46,7 @@ class RegisterComponent extends Form {
       textContent: 'Register',
       // call super function register and bind 'this' to keep context
       onClick: super.register.bind(this),
-      classes: ['small_gradient_button', 'col-12'],
+      classes: ['m-button__small_gradient_button', 'col-12'],
     });
     const text = '<p class="margin">OR</p>';
 
@@ -54,7 +54,7 @@ class RegisterComponent extends Form {
       textContent: 'Sign in with Google',
       // call super function login and bind 'this' to keep context
       onClick: super.loginGoogle.bind(this),
-      classes: ['small_gradient_button', 'google', 'col-12'],
+      classes: ['m-button__small_gradient_button', 'google', 'col-12'],
     });
 
     div.appendChild(registerBtn);

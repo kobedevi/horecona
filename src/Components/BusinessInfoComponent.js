@@ -131,7 +131,7 @@ class BusinessInfoComponent extends Component {
       const saveBtn = Elements.submitButton2({
         textContent: 'Save',
         onClick: this.saveData.bind(this),
-        classes: ['small_gradient_button', 'col-12'],
+        classes: ['m-button__small_gradient_button', 'col-12'],
       });
 
       form.appendChild(saveBtn);

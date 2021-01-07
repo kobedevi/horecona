@@ -28,7 +28,7 @@ class Form extends Component {
   // errorContainer
   showError({ message }) {
     if (!message) return;
-    const errorContainer = document.querySelector('form .error-container');
+    const errorContainer = document.querySelector('form .m-form__error-container');
     errorContainer.innerHTML = message;
     errorContainer.classList.remove('hide');
   }

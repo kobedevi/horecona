@@ -3,7 +3,7 @@
 @use "../abstracts/mixins" as mix;
 @use "../abstracts/extends";
 
-.small_gradient_button {
+.m-button__small_gradient_button {
     cursor: pointer;
     border: none;
     background-image: url(../img/small-button.svg);
@@ -29,13 +29,13 @@
     }
 }
 
-form .small_gradient_button, #text .small_gradient_button{
+form .m-button__small_gradient_button, #text .m-button__small_gradient_button{
     position: relative;
     bottom: unset;
     flex-grow: 1;
 }
 
-.history-item.button__action{
+.m-history-item.m-button__action{
     justify-content: space-between;
     text-align: left;
     padding: 8px 16px;
@@ -51,7 +51,7 @@ form .small_gradient_button, #text .small_gradient_button{
     
 }
 
-.button__action{
+.m-button__action{
     height: 60px;
     width: 100%;
     display: flex;
@@ -64,17 +64,17 @@ form .small_gradient_button, #text .small_gradient_button{
     }
     @extend %dropshadow;
 
-    div{
+    .m-action__container{
         display: flex;
         flex-direction: row;
         align-items: center;
-        img{
+        .a-container__img{
             margin-left: 16px;
             fill: vars.$main-solid-color;
             width: 32px;
             max-height: 32px;
         }
-        p{
+        .a-container__text{
             font-size: func.rem(20px);
             margin: 0 0 0 32px;
         }
@@ -89,9 +89,10 @@ form .small_gradient_button, #text .small_gradient_button{
         background-position: center;
         background-repeat: no-repeat;
     }
-    span{
-        background-color: rgba($color: vars.$main-solid-color, $alpha: 0.25);
-        padding: 4px 8px;
-        border-radius: 50px;
-    }
+}
+
+.a-action__span{
+    background-color: rgba($color: vars.$main-solid-color, $alpha: 0.25);
+    padding: 4px 8px;
+    border-radius: 50px;
 }

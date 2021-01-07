@@ -45,13 +45,13 @@ class LoginComponent extends Form {
     const loginBtn = Elements.submitButton({
       textContent: 'Login',
       onClick: super.loginEmail.bind(this),
-      classes: ['small_gradient_button', 'col-6'],
+      classes: ['m-button__small_gradient_button', 'col-6'],
     });
 
     const registerBtn = Elements.submitButton({
       textContent: 'Sign-up',
       onClick: () => { window.location.replace('/register'); },
-      classes: ['small_gradient_button', 'outline', 'col-6'],
+      classes: ['m-button__small_gradient_button', 'outline', 'col-6'],
     });
 
     const text = '<p class="margin">OR</p>';
@@ -59,7 +59,7 @@ class LoginComponent extends Form {
     const googleBtn = Elements.submitButton({
       textContent: 'Sign in with Google',
       onClick: super.loginGoogle.bind(this),
-      classes: ['small_gradient_button', 'google', 'col-12'],
+      classes: ['m-button__small_gradient_button', 'google', 'col-12'],
     });
 
     // append everything

@@ -1,11 +1,11 @@
 export default `
-    <div class="history-item button__action">
-        <div class="history-data">
+    <div class="m-history-item m-button__action">
+        <div class="m-history__data">
             <p>{{place}}</p>
-            <p class="date">{{date}}</p>
+            <p class="a-data__date">{{date}}</p>
         </div>
         {{#if active}}
-            <span>Active</span>
+            <span class="a-action__span">Active</span>
         {{/if}}
     </div>
 `;

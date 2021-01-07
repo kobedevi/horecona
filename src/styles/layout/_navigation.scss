@@ -1,6 +1,6 @@
 @use "../abstracts/variables" as vars;
 
-.navigation{
+.o-navigation{
     z-index: 5;
     width: 100%;
     display: flex;
@@ -8,7 +8,7 @@
     justify-content: space-around;
     position: absolute;
     bottom: 32px;
-    img{
+    .a-navigation__icon{
         width: 20px;
     }
     a.active{

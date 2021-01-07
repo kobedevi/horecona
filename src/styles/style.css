@@ -548,12 +548,12 @@ header .header__h2 {
 }
 
 /*sets to border-box*/
-header {
+.o-header {
   display: flex;
   position: relative;
   width: 100%;
 }
-header div {
+.o-header .m-header__info {
   padding: 15px;
   width: 100%;
   height: 100%;
@@ -564,26 +564,34 @@ header div {
   flex-wrap: wrap;
   color: white;
 }
-header div * {
+.o-header .m-header__info * {
   margin: 0;
 }
-header img {
+.o-header .m-header__info .a-info__title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+  width: 100%;
+  max-height: 50px;
+}
+.o-header .m-header__info .a-info__img {
   align-self: flex-end;
   position: absolute;
 }
-header svg {
+.o-header svg {
   width: 100%;
   filter: drop-shadow(0 7px 6px rgba(0, 0, 0, 0.27));
 }
 
-.header__big div {
+.header__big .m-header__info {
   padding: 0;
   margin-left: 15px;
   width: calc(100% - 30px);
   overflow: hidden;
   display: flex;
 }
-.header__big div img {
+.header__big .m-header__info .a-info__img {
   position: absolute;
   transform: translate(-50% -50%);
   left: -15%;
@@ -592,11 +600,7 @@ header svg {
   margin-bottom: 40px;
 }
 
-.small_gradient_button, .button__action {
-  filter: drop-shadow(0 7px 6px rgba(0, 0, 0, 0.27));
-}
-
-.navigation {
+.o-navigation {
   z-index: 5;
   width: 100%;
   display: flex;
@@ -605,13 +609,13 @@ header svg {
   position: absolute;
   bottom: 32px;
 }
-.navigation img {
+.o-navigation .a-navigation__icon {
   width: 20px;
 }
-.navigation a.active {
+.o-navigation a.active {
   position: relative;
 }
-.navigation a.active::after {
+.o-navigation a.active::after {
   position: absolute;
   content: " ";
   width: 6px;
@@ -632,7 +636,7 @@ header svg {
   border-radius: 27px;
 }
 
-.history-item.action {
+.m-history-item.m-button__action {
   justify-content: space-between;
   text-align: left;
   padding: 8px 16px;
@@ -640,25 +644,25 @@ header svg {
   width: 100%;
   height: auto;
 }
-.history-item.action:not(:first-of-type) {
+.m-history-item.m-button__action:not(:first-of-type) {
   margin-top: 16px;
 }
-.history-item.action p {
+.m-history-item.m-button__action p {
   margin: 0;
 }
-.history-item.action span {
+.m-history-item.m-button__action .a-action__span {
   background-color: rgba(124, 90, 243, 0.25);
   padding: 4px 8px;
   border-radius: 50px;
 }
 
-.history-container {
+.o-history-container {
   margin: 32px 0 112px;
   width: 100%;
   flex-grow: 1;
   overflow-y: auto;
 }
-.history-container .history-data {
+.o-history-container .m-history__data {
   flex: 1 1 50%;
   justify-content: flex-start;
   align-items: flex-start;
@@ -666,7 +670,7 @@ header svg {
   flex-wrap: wrap;
   flex-direction: column;
 }
-.history-container .history-data .date {
+.o-history-container .m-history__data .a-data__date {
   font-size: 0.8rem;
 }
 
@@ -697,7 +701,11 @@ header svg {
   margin-top: 64px;
 }
 
-.small_gradient_button {
+.m-button__small_gradient_button, .m-button__action {
+  filter: drop-shadow(0 7px 6px rgba(0, 0, 0, 0.27));
+}
+
+.m-button__small_gradient_button {
   cursor: pointer;
   border: none;
   background-image: url(../img/small-button.svg);
@@ -713,22 +721,22 @@ header svg {
   position: absolute;
   bottom: 80px;
 }
-.small_gradient_button.outline {
+.m-button__small_gradient_button.outline {
   background: none;
   border: 1px solid #7C5AF3;
 }
-.small_gradient_button.google {
+.m-button__small_gradient_button.google {
   background: white;
   color: #2C384A;
 }
 
-form .small_gradient_button, #text .small_gradient_button {
+form .m-button__small_gradient_button, #text .m-button__small_gradient_button {
   position: relative;
   bottom: unset;
   flex-grow: 1;
 }
 
-.history-item.button__action {
+.m-history-item.m-button__action {
   justify-content: space-between;
   text-align: left;
   padding: 8px 16px;
@@ -736,14 +744,14 @@ form .small_gradient_button, #text .small_gradient_button {
   width: 100%;
   height: auto;
 }
-.history-item.button__action:not(:first-of-type) {
+.m-history-item.m-button__action:not(:first-of-type) {
   margin-top: 16px;
 }
-.history-item.button__action p {
+.m-history-item.m-button__action p {
   margin: 0;
 }
 
-.button__action {
+.m-button__action {
   height: 60px;
   width: 100%;
   display: flex;
@@ -752,25 +760,25 @@ form .small_gradient_button, #text .small_gradient_button {
   border-radius: 27px;
   text-decoration: none;
 }
-.button__action:not(:first-of-type) {
+.m-button__action:not(:first-of-type) {
   margin-top: 16px;
 }
-.button__action div {
+.m-button__action .m-action__container {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-.button__action div img {
+.m-button__action .m-action__container .a-container__img {
   margin-left: 16px;
   fill: #7C5AF3;
   width: 32px;
   max-height: 32px;
 }
-.button__action div p {
+.m-button__action .m-action__container .a-container__text {
   font-size: 1.25rem;
   margin: 0 0 0 32px;
 }
-.button__action.action__gradient {
+.m-button__action.action__gradient {
   background: url("../img/small-button.svg");
   position: relative;
   bottom: unset;
@@ -780,7 +788,8 @@ form .small_gradient_button, #text .small_gradient_button {
   background-position: center;
   background-repeat: no-repeat;
 }
-.button__action span {
+
+.a-action__span {
   background-color: rgba(124, 90, 243, 0.25);
   padding: 4px 8px;
   border-radius: 50px;
@@ -789,7 +798,7 @@ form .small_gradient_button, #text .small_gradient_button {
 form {
   margin-top: 48px;
 }
-form .error-container {
+form .m-form__error-container {
   color: red;
   font-size: 1.25rem;
   text-align: left;
@@ -914,23 +923,6 @@ form div input:focus + label {
   cursor: pointer;
 }
 
-@media screen and (min-width: 900px) {
-  body {
-    height: unset;
-    width: unset;
-  }
-
-  #appContainer {
-    box-shadow: 0 0 0 10pt #23272A;
-    border-radius: 25px;
-    padding: 10px 10px 0;
-    width: 375px;
-    height: 812px !important;
-  }
-  #appContainer .pageContainer {
-    min-height: 100%;
-  }
-}
 .seperate {
   display: flex;
   width: 100%;

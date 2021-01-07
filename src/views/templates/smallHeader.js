@@ -1,6 +1,6 @@
 export default `
 
-<header class="header__small">
+<header class="o-header header__small">
         <svg version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 355 143" style="enable-background:new 0 0 355 143;"
             xml:space="preserve">
             <style type="text/css">
@@ -23,9 +23,9 @@ export default `
                 </g>
             </g>
         </svg>
-        <div>
-            <h1>{{headerData.title}}</h1>
-            <h2 class="header__h2">{{headerData.subtitle}}</h2>
+        <div class="m-header__info">
+            <h1 class="a-info__title">{{headerData.title}}</h1>
+            <h2 class="a-info__subtitle">{{headerData.subtitle}}</h2>
         </div>
     </header>
 `;

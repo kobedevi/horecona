@@ -1,6 +1,6 @@
 export default `
 
-    <div class="error-container hide"></div>
+    <div class="m-form__error-container hide"></div>
     <div class='together'>
         <input type="text" name="firstName" id="firstName" placeholder="Fons" required>
         <label for="firstName">First name<span>*</span></label>

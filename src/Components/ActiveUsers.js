@@ -53,19 +53,22 @@ class ActiveUsers extends Component {
       .then((checkins) => {
         const activeUserContainer = document.createElement('div');
         activeUserContainer.id = 'historyContainer';
-        activeUserContainer.classList.add('history-container');
+        activeUserContainer.classList.add('o-history-container');
 
         container.appendChild(activeUserContainer);
         // generate history item
         checkins.forEach((checkin) => {
           const userContainer = document.createElement('div');
-          userContainer.classList.add('history-item', 'button__action');
+          userContainer.classList.add('m-history-item', 'm-button__action');
           const data = document.createElement('div');
-          data.classList.add('history-data');
+          data.classList.add('m-action__container');
+          data.classList.add('m-history__data');
           const name = document.createElement('p');
           const date = document.createElement('p');
-          date.classList.add('date');
+          date.classList.add('a-data__date');
           const span = document.createElement('span');
+          span.classList.add('a-action__span');
+          span.style.cursor = 'pointer';
 
           const masterDate = checkin.data().createdOn.toDate();
           const domDate = masterDate.toString().slice(4, 24);

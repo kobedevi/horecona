@@ -52,7 +52,7 @@ class Scanner extends Component {
             onClick: () => {
               window.location.reload();
             },
-            classes: ['small_gradient_button'],
+            classes: ['m-button__small_gradient_button'],
           }));
           return null;
         }
@@ -73,7 +73,7 @@ class Scanner extends Component {
                 });
             }
           },
-          classes: ['small_gradient_button', 'col-6'],
+          classes: ['m-button__small_gradient_button', 'col-6'],
         }));
         // cancel button
         row.appendChild(Elements.submitButton({
@@ -81,7 +81,7 @@ class Scanner extends Component {
           onClick: () => {
             window.location.replace('/dashboard');
           },
-          classes: ['small_gradient_button', 'outline', 'col-6'],
+          classes: ['m-button__small_gradient_button', 'outline', 'col-6'],
         }));
         return data.docs[0].id;
       });

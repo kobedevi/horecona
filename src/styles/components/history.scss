@@ -1,6 +1,6 @@
 @use "../abstracts/variables" as vars;
 
-.history-item.action{
+.m-history-item.m-button__action{
     justify-content: space-between;
     text-align: left;
     padding: 8px 16px;
@@ -13,26 +13,26 @@
     p{
         margin: 0;
     }
-    span{
+    .a-action__span{
         background-color: rgba($color: vars.$main-solid-color, $alpha: 0.25);
         padding: 4px 8px;
         border-radius: 50px;
     }
 }
 
-.history-container{
+.o-history-container{
     margin: 32px 0 112px;
     width: 100%;
     flex-grow: 1;
     overflow-y: auto;
-    .history-data{
+    .m-history__data{
         flex: 1 1 50%;
         justify-content: flex-start;
         align-items: flex-start;
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
-        .date{
+        .a-data__date{
             font-size: .8rem;
         }
     }

@@ -1,7 +1,7 @@
 import banner from '../../img/banner.svg';
 
 export default `
-<header class="header__big">
+<header class="o-header header__big">
         <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             x="0px" y="0px" viewBox="0 0 355 393" style="enable-background:new 0 0 355 393;" xml:space="preserve">
             <style type="text/css">
@@ -23,8 +23,8 @@ export default `
         C10.9,393,0,383.1,0,370.8V22.2C0,9.9,10.9,0,24.3,0z" />
             </g>
         </svg>
-        <div>
-            <img src="${banner}" alt="">
+        <div class="m-header__info">
+            <img class="a-info__img" src="${banner}" alt="">
         </div>
     </header>
 `;
