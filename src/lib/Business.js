@@ -16,21 +16,6 @@ class Business {
     // promise might need to be refactored? safer to keep resolved now
     return new Promise((resolve, reject) => {
       try {
-        firebase.auth().onAuthStateChanged((user) => {
-          this.user = user;
-          resolve(user);
-        });
-        // check array of possible answers and add score if correct
-      } catch (err) {
-        reject(err);
-      }
-    });
-  }
-
-  async getThisUser2() {
-    // promise might need to be refactored? safer to keep resolved now
-    return new Promise((resolve, reject) => {
-      try {
         firebase.auth().onAuthStateChanged(async (user) => {
           await firebase.firestore().collection('users').where('uid', '==', user.uid).get()
             .then(async (data) => {
@@ -39,10 +24,14 @@ class Business {
                 user: data.docs[0].data().uid,
                 type: data.docs[0].data().type,
               };
+              this.user = relevant;
               // eslint-disable-next-line newline-per-chained-call
               await firebase.firestore().collection('users').doc(data.docs[0].id).collection('info').get()
                 .then((info) => {
-                  relevant.name = info.docs[0].data().Business;
+                  if (info.docs[0] !== undefined) {
+                    relevant.name = info.docs[0].data().Business;
+                    resolve(relevant);
+                  }
                   resolve(relevant);
                 });
             });
@@ -80,7 +69,7 @@ class Business {
   async additionalInfo(formData) {
     let docID;
     const db = firebase.firestore();
-    await db.collection('users').where('uid', '==', this.user.uid).get()
+    await db.collection('users').where('uid', '==', this.user.user).get()
       .then(async (data) => {
         docID = data.docs[0].id;
         const infoData = {

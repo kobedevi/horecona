@@ -62,6 +62,7 @@ class LoginComponent extends Form {
       classes: ['small_gradient_button', 'google', 'col-12'],
     });
 
+    // append everything
     div.appendChild(loginBtn);
     div.appendChild(registerBtn);
     div.insertAdjacentHTML('beforeend', text);

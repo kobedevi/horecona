@@ -16,21 +16,6 @@ class User {
     // promise might need to be refactored? safer to keep resolved now
     return new Promise((resolve, reject) => {
       try {
-        firebase.auth().onAuthStateChanged((user) => {
-          this.user = user;
-          resolve(user);
-        });
-        // check array of possible answers and add score if correct
-      } catch (err) {
-        reject(err);
-      }
-    });
-  }
-
-  async getThisUser2() {
-    // promise might need to be refactored? safer to keep resolved now
-    return new Promise((resolve, reject) => {
-      try {
         firebase.auth().onAuthStateChanged(async (user) => {
           await firebase.firestore().collection('users').where('uid', '==', user.uid).get()
             .then(async (data) => {
@@ -42,6 +27,7 @@ class User {
                     user: data.docs[0].data().uid,
                     type: data.docs[0].data().type,
                   };
+                  this.user = user;
                   // if type == business and it has an extra info stored
                   if (relevant.type === 'Business' && !(userInfo.docs[0] === undefined)) {
                     relevant.business = userInfo.docs[0].data().Business;

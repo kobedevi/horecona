@@ -34,7 +34,7 @@ This was created by Devillé Kobe!
 		- aanmaken unieke QR code DONE
 
 - random shit:
-	- message if history is empty (users/businesses)
+	- message if history is empty (users/businesses) DONE
 	- remove local storage DONE
 	- uml schema
 	- double reload (double model update) // extra

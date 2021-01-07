@@ -32,7 +32,7 @@ class UserDashboard extends Component {
   async getUserData() {
     if (!this.userLoaded) {
       const tempUser = new User();
-      await tempUser.getThisUser2()
+      await tempUser.getThisUser()
         .then(async (data) => {
           await tempUser.getCheckinData(data)
             .then((checkinData) => {

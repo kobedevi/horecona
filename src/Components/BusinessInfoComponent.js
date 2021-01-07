@@ -50,7 +50,7 @@ class BusinessInfoComponent extends Component {
     let result;
     const tempBusiness = new Business();
     await tempBusiness.getThisUser()
-      .then(async (user) => db.collection('users').where('uid', '==', user.uid).get())
+      .then(async (user) => db.collection('users').where('uid', '==', user.user).get())
       .then(async (docRef) => {
         result = await db.collection('users').doc(docRef.docs[0].id).collection('info').get();
       });

@@ -26,7 +26,7 @@ class UserDashboard extends Component {
 
   async getUserData(tempUser) {
     if (!this.userLoaded) {
-      await tempUser.getThisUser2()
+      await tempUser.getThisUser()
         .then(async (data) => {
           this.model.profileInfo = data;
           this.userLoaded = true;

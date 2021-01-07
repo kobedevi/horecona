@@ -63,7 +63,7 @@ class Scanner extends Component {
           onClick: async () => {
             if (!this.userLoaded) {
               const tempUser = new User();
-              await tempUser.getThisUser2()
+              await tempUser.getThisUser()
                 .then(async (userData) => {
                   await tempUser.checkin(userData, name);
                 });

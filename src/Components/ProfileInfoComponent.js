@@ -32,7 +32,7 @@ class ProfileInfoComponent extends Component {
   async getUserData() {
     if (!this.userLoaded) {
       const tempUser = new User();
-      await tempUser.getThisUser2()
+      await tempUser.getThisUser()
         .then((data) => {
           this.model.profileInfo = data;
           this.userLoaded = true;

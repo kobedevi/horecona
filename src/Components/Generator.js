@@ -26,7 +26,7 @@ class Generate extends Component {
   async getUserData() {
     if (!this.userLoaded) {
       const tempUser = new Business();
-      await tempUser.getThisUser2()
+      await tempUser.getThisUser()
         .then((data) => {
           this.model.business = data;
           this.businessLoaded = true;
