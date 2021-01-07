@@ -11,8 +11,6 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    'no-console': 'off',
-    'linebreak-style': 'off',
     'class-methods-use-this': 0,
   },
 };
