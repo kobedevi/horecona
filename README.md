@@ -1,6 +1,6 @@
 # Public Horecona API is deprecated
-# This is my SPA Horecona app
+## This is my SPA Horecona app
 [My Horecona app](https://admiring-davinci-fb360a.netlify.app/)
 
-## Author
+### Author
 This was created by Devillé Kobe!
